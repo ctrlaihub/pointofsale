@@ -10,4 +10,9 @@ public class HomeController {
 	public String home(){
 		return "login";
 	}
+	
+	@RequestMapping(value="/adminDashboard")
+	public String adminDash(){
+		return "adminDashboard";
+	}
 }

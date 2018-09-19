@@ -75,7 +75,9 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 </head>
 
 <body>
-
+<!-- 	<div class="login" style="margin-left: -817px; margin-top: -296px;"> -->
+<!-- 	<h1>Stock Management System</h1> -->
+<!-- 	</div> -->
   <div class="login">
 	<h1>Login</h1>
     <form method="post">
@@ -87,7 +89,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
   
   
 
-    <script  src="assets/js/index.js"></script>
+    <script  src="assets/login/js/index.js"></script>
 
 
 
