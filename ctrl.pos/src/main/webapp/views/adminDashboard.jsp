@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -35,8 +35,9 @@
 		<div class="rad-body-wrapper rad-nav-min">
 			<div class="container-fluid">
 				<header class="rad-page-title">
-					<span>Dashboard</span>
-					<small class="md-txt">Welcome Sathish, <a href="https://www.google.com/maps/place/3720+Emerald+St,+Torrance,+CA+90503/@33.8403836,-118.3543828,17z/data=!4m18!1m15!4m14!1m6!1m2!1s0x80c2b4d407f58b11:0xdedca55964c89054!2s3720+Emerald+St,+Torrance,+CA+90503!2m2!1d-118.3520761!2d33.8403792!1m6!1m2!1s0x80c2b4d407f58b11:0xdedca55964c89054!2s3720+Emerald+St,+Torrance,+CA+90503!2m2!1d-118.3520761!2d33.8403792!3m1!1s0x80c2b4d407f58b11:0xdedca55964c89054" target="_blank"><i class="fa fa-map-marker rad-txt-danger"></i> California</a></small>					</header>
+<!-- 					<span>Dashboard</span> -->
+                 <small class="md-txt">Welcome Deepan</small>
+<!-- 					<small class="md-txt">Welcome Sathish <a href="https://www.google.com/maps/place/3720+Emerald+St,+Torrance,+CA+90503/@33.8403836,-118.3543828,17z/data=!4m18!1m15!4m14!1m6!1m2!1s0x80c2b4d407f58b11:0xdedca55964c89054!2s3720+Emerald+St,+Torrance,+CA+90503!2m2!1d-118.3520761!2d33.8403792!1m6!1m2!1s0x80c2b4d407f58b11:0xdedca55964c89054!2s3720+Emerald+St,+Torrance,+CA+90503!2m2!1d-118.3520761!2d33.8403792!3m1!1s0x80c2b4d407f58b11:0xdedca55964c89054" target="_blank"><i class="fa fa-map-marker rad-txt-danger"></i> California</a></small>					</header> -->
 <!-- 				<div class="row"> -->
 <!-- 					<div class="col-lg-3 col-xs-6"> -->
 <!-- 						<div class="rad-info-box rad-txt-success"> -->

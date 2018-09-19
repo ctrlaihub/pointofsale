@@ -1,9 +1,9 @@
 		<nav class="rad-navigation">
 			<div class="rad-logo-container rad-nav-min">
-				<a href="#" class="rad-logo"><i class=" fa fa-recycle"></i> Radar</a>
+				<a href="#" class="rad-logo"><i class=" fa fa-recycle"></i> CTRLAIHUB</a>
 				<a href="#" class="rad-toggle-btn pull-right"><i class="fa fa-bars"></i></a>
 			</div>
-			<a href="#" class="rad-logo-hidden">Radar</a>
+			<a href="#" class="rad-logo-hidden">Inventory Management System</a>
 			<div class="rad-top-nav-container">
 				<a href="" class="brand-icon"><i class="fa fa-recycle"></i></a>
 				<ul class="pull-right links">
