@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan({"com.ctrl.controller","com.ctrl.service"})
-@EntityScan({"com.ctrl.domains"})
+@EntityScan({"com.ctrl.domains","com.ctrl.domains.stock"})
 @EnableJpaRepositories({"com.ctrl.repository"})
 public class Application {
 

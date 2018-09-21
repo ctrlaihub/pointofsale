@@ -21,7 +21,15 @@ public class Address {
 	private String state;
 	@Column(nullable = false)
 	private long zipcode;
+	@Column(nullable = false)
+	private boolean active;
 	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	public long getAddressid() {
 		return addressid;
 	}
