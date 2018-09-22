@@ -1,22 +1,64 @@
 package com.ctrl.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ctrl.dao.UserDao;
 import com.ctrl.domains.User;
 import com.ctrl.repository.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Iterable<User> listAllUsers(){
+	@Autowired
+	private UserDao userDao;
+	/*
+	 * For creating new User
+	 *
+	 * */
+	public boolean createUser(User user){
+		try{
+			userRepository.save(user);
+			return true;
+			}catch(Exception e){
+				return false;
+			}
+	}
+	
+	/*
+	 * To list all Users
+	 * 
+	 * */
+	public List<User> listAllUsers(){
 		return userRepository.findAll();
 	}
 	
-	public void createUser(User user){
-		userRepository.save(user);
-	} 
+	/*
+	 * To list only active Users
+	 * 
+	 * */
+	public List<User> listAllActiveUsers()
+	{
+		return userRepository.findByActive(true);
+	}
+	
+	/*
+	 * To SOFT delete User
+	 * 
+	 */
+	public boolean deleteUser(User user){
+		try{
+			userDao.updateUser(user);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
 }
