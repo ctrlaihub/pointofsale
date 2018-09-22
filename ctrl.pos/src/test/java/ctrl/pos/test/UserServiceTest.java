@@ -1,6 +1,8 @@
 package ctrl.pos.test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -14,6 +16,7 @@ import com.ctrl.cfg.Application;
 import com.ctrl.domains.Address;
 import com.ctrl.domains.Authority;
 import com.ctrl.domains.User;
+import com.ctrl.domains.stock.Category;
 import com.ctrl.service.UserService;
 
 @RunWith(SpringRunner.class)
@@ -23,14 +26,9 @@ public class UserServiceTest {
 	@Autowired
 	private UserService userService;
 	
-	@Test
-	public void UserTest(){
-		
-		User user=CreateUser();
-		userService.createUser(user);
-	}
 	
-	public User CreateUser(){
+	@Test
+	public void CreateUser(){
 		
 		User user=new User();
 		
@@ -48,9 +46,34 @@ public class UserServiceTest {
 		user.setAddress(address);
 		
 		Set<Authority> authority=new HashSet<>();
-		authority.add(Authority.ADMIN);
+		authority.add(Authority.MANAGER);
 		user.setAuthority(authority);
 		
-		return user;
+		
+		User userr=new User();
+		
+		userr.setActive(true);
+		userr.setEmail("dee@gmail.com");
+		userr.setName("dee");
+		userr.setPassword("dee");
+		
+		Address addresss = new Address();
+		addresss.setStreet("xyz");
+		addresss.setCity("chennai");
+		addresss.setState("TN");
+		addresss.setZipcode(1234567);
+		
+		userr.setAddress(addresss);
+		
+		Set<Authority> authorityy=new HashSet<>();
+		authorityy.add(Authority.MANAGER);
+		userr.setAuthority(authorityy);
+		
+		userService.createUser(user);
+		userService.createUser(userr);
+		
+		List<User> l1=new ArrayList<>();
+		userService.listAllManagers().forEach(l1::add);
+		System.out.println(l1);
 	}
 }

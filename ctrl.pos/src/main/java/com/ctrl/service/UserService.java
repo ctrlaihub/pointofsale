@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ctrl.dao.UserDao;
+import com.ctrl.domains.Authority;
 import com.ctrl.domains.User;
 import com.ctrl.repository.UserRepository;
 
@@ -60,5 +61,17 @@ public class UserService {
 		}catch(Exception e){
 			return false;
 		}
+	}
+	
+	public List<User> listAllManagers(){
+		return userRepository.findByAuthority(Authority.MANAGER);
+	}
+	
+	public List<User> listAllAdmins(){
+		return userRepository.findByAuthority(Authority.ADMIN);
+	}
+	
+	public List<User> listAllCashiers(){
+		return userRepository.findByAuthority(Authority.CASHIER);
 	}
 }
