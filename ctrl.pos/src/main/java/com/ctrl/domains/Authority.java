@@ -2,5 +2,5 @@ package com.ctrl.domains;
 
 public enum Authority {
 
-	MANAGER,CASHIER,ADMIN
+	MANAGER,CASHIER,ADMIN,SELLER
 }

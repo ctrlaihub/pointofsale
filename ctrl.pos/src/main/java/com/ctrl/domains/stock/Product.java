@@ -1,5 +1,7 @@
 package com.ctrl.domains.stock;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +30,7 @@ public class Product {
 	@Column(nullable = false)
 	private int quantity;
 	@Column(nullable = false)
-	private String expiryDate;
+	private Date expiryDate;
 	@Column(nullable = false)
 	private boolean active;
 	
@@ -74,10 +76,11 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public String getExpiryDate() {
+
+	public Date getExpiryDate() {
 		return expiryDate;
 	}
-	public void setExpiryDate(String expiryDate) {
+	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 	public boolean isActive() {
@@ -86,5 +89,12 @@ public class Product {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productCode=" + productCode + ", category=" + category + ", name=" + name
+				+ ", price=" + price + ", sellingprice=" + sellingprice + ", quantity=" + quantity + ", expiryDate="
+				+ expiryDate + ", active=" + active + "]";
+	}
+	
 	
 }

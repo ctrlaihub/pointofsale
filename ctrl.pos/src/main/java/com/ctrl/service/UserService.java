@@ -74,4 +74,8 @@ public class UserService {
 	public List<User> listAllCashiers(){
 		return userRepository.findByAuthority(Authority.CASHIER);
 	}
+	
+	public List<User> listAllSellers(){
+		return userRepository.findByAuthority(Authority.SELLER);
+	}
 }
