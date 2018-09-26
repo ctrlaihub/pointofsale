@@ -18,9 +18,9 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/adminDashboard")
+	@RequestMapping(value="/adminDash")
 	public String adminDash(){
-		return "adminDashboard";
+		return "adminDash";
 	}
 	
 	@RequestMapping(value="/employee")
