@@ -7,43 +7,43 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="dashAssets/pages/typography.html">
-                            <i class="material-icons">text_fields</i>
-                            <span>Typography</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashAssets/pages/helper-classes.html">
-                            <i class="material-icons">layers</i>
-                            <span>Helper Classes</span>
-                        </a>
-                    </li>
+<!--                     <li> -->
+<!--                         <a href="dashAssets/pages/typography.html"> -->
+<!--                             <i class="material-icons">text_fields</i> -->
+<!--                             <span>Typography</span> -->
+<!--                         </a> -->
+<!--                     </li> -->
+<!--                     <li> -->
+<!--                         <a href="dashAssets/pages/helper-classes.html"> -->
+<!--                             <i class="material-icons">layers</i> -->
+<!--                             <span>Helper Classes</span> -->
+<!--                         </a> -->
+<!--                     </li> -->
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">widgets</i>
-                            <span>Widgets</span>
+                            <span>Manage</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
                                 <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Cards</span>
+                                    <span>Employees</span>
                                 </a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="dashAssets/pages/widgets/cards/basic.html">Basic</a>
+                                        <a href="${contextRoot}/viewEmployees">View Employees</a>
                                     </li>
                                     <li>
-                                        <a href="dashAssets/pages/widgets/cards/colored.html">Colored</a>
+                                        <a href="dashAssets/pages/widgets/cards/colored.html">Add Employee</a>
                                     </li>
-                                    <li>
-                                        <a href="dashAssets/pages/widgets/cards/no-header.html">No Header</a>
-                                    </li>
+<!--                                     <li> -->
+<!--                                         <a href="dashAssets/pages/widgets/cards/no-header.html">No Header</a> -->
+<!--                                     </li> -->
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Infobox</span>
+                                    <span>Users</span>
                                 </a>
                                 <ul class="ml-menu">
                                     <li>

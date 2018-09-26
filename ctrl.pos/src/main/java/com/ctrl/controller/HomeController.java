@@ -19,22 +19,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/adminDash")
-	public String adminDash(){
-		return "adminDash";
+	public ModelAndView adminDash(){
+		ModelAndView mv=new ModelAndView("adminDash");
+		mv.addObject("userClickHome", true);
+		return mv;		
 	}
 	
-	@RequestMapping(value="/employee")
+	@RequestMapping(value="/viewEmployees")
 	public ModelAndView employee(){
-		ModelAndView mv=new ModelAndView("adminDashboard");
+		ModelAndView mv=new ModelAndView("adminDash");
+		mv.addObject("users",userService.listAllActiveUsers());
+		mv.addObject("allusers",userService.listAllUsers());
 		mv.addObject("userClickEmployee", true);
 		return mv;
 	}
 	
-	@RequestMapping(value="/listAllEmployees")
-	public ModelAndView listAllEmployees(){
-		ModelAndView mv=new ModelAndView("adminDashboard");
-		mv.addObject("lists", userService.listAllUsers());
-		mv.addObject("userClickListAllEmployee", true);
-		return mv;
-	}
 }

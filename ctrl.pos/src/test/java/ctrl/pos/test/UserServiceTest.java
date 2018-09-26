@@ -33,20 +33,22 @@ public class UserServiceTest {
 		User user=new User();
 		
 		user.setActive(true);
-		user.setEmail("deepan@gmail.com");
-		user.setName("deepan");
-		user.setPassword("dee");
+		user.setEmail("deepane3e@gmail.com");
+		user.setName("deepane");
+		user.setPassword("deee");
 		
 		Address address = new Address();
 		address.setStreet("xyz");
 		address.setCity("chennai");
 		address.setState("TN");
 		address.setZipcode(1234567);
+		address.setActive(true);
 		
 		user.setAddress(address);
 		
 		Set<Authority> authority=new HashSet<>();
-		authority.add(Authority.MANAGER);
+		authority.add(Authority.SELLER);
+		authority.add(Authority.ADMIN);
 		user.setAuthority(authority);
 		
 		
@@ -70,10 +72,10 @@ public class UserServiceTest {
 		userr.setAuthority(authorityy);
 		
 		userService.createUser(user);
-		userService.createUser(userr);
+//		userService.createUser(userr);
 		
-		List<User> l1=new ArrayList<>();
-		userService.listAllManagers().forEach(l1::add);
-		System.out.println(l1);
+//		List<User> l1=new ArrayList<>();
+//		userService.listAllManagers().forEach(l1::add);
+//		System.out.println(l1);
 	}
 }
