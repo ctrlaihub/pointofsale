@@ -121,9 +121,17 @@
     	</c:if>
     	
     	<c:if test="${userClickEmployee==true }">
-    		<%@include file="./shared/datatable.jsp" %>
+    		<%@include file="./shared/userDatatable.jsp" %>
     	</c:if>
 
+		<c:if test="${userClickViewProduct==true }">
+    		<%@include file="./shared/productDatatable.jsp" %>
+    	</c:if>
+    	
+    	<c:if test="${userClickViewStock==true }">
+    		<%@include file="./shared/stocksDatatable.jsp" %>
+    	</c:if>
+    	
     <!-- Jquery Core Js -->
     <script src="dashAssets/plugins/jquery/jquery.min.js"></script>
 
@@ -169,7 +177,9 @@
     <script src="dashAssets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
     <script src="dashAssets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="dashAssets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    
     <script src="dashAssets/js/pages/tables/jquery-datatable.js"></script>
+    
     <!-- Custom Js -->
     <script src="dashAssets/js/admin.js"></script>
     <script src="dashAssets/js/pages/index.js"></script>

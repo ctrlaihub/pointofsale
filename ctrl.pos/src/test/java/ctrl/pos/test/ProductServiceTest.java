@@ -46,7 +46,7 @@ public class ProductServiceTest {
 		
 		////////////////////////////////
 		Product p1=new Product();
-		p1.setActive(false);
+		p1.setActive(true);
 		p1.setExpiryDate(new Date());
 		p1.setName("coke");
 		p1.setPrice(10.00);
@@ -64,9 +64,9 @@ public class ProductServiceTest {
 		productService.createProduct(p1);
 		
 		
-		List<Product> l=new ArrayList<>();
-		productService.listAllProducts().forEach(l::add);
-		System.out.println(l);
+//		List<Product> l=new ArrayList<>();
+//		productService.listAllProducts().forEach(l::add);
+//		System.out.println(l);
 		
 //		assertEquals(2, productService.listAllProducts().size());
 //		assertEquals(1, productService.listAllActiveProducts().size());

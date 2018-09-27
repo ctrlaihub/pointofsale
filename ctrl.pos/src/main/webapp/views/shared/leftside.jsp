@@ -22,7 +22,7 @@
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">widgets</i>
-                            <span>Manage</span>
+                            <span>Employee Management</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
@@ -34,7 +34,7 @@
                                         <a href="${contextRoot}/viewEmployees">View Employees</a>
                                     </li>
                                     <li>
-                                        <a href="dashAssets/pages/widgets/cards/colored.html">Add Employee</a>
+                                        <a href="${contextRoot}/addEmployee">Add Employee</a>
                                     </li>
 <!--                                     <li> -->
 <!--                                         <a href="dashAssets/pages/widgets/cards/no-header.html">No Header</a> -->
@@ -43,24 +43,24 @@
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Users</span>
+                                    <span>Customer</span>
                                 </a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-1.html">Infobox-1</a>
+                                        <a href="dashAssets/pages/widgets/infobox/infobox-1.html">View Customers</a>
                                     </li>
                                     <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-2.html">Infobox-2</a>
+                                        <a href="dashAssets/pages/widgets/infobox/infobox-2.html">Add Customer</a>
                                     </li>
-                                    <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                                    </li>
-                                    <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                                    </li>
-                                    <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                                    </li>
+<!--                                     <li> -->
+<!--                                         <a href="dashAssets/pages/widgets/infobox/infobox-3.html">Infobox-3</a> -->
+<!--                                     </li> -->
+<!--                                     <li> -->
+<!--                                         <a href="dashAssets/pages/widgets/infobox/infobox-4.html">Infobox-4</a> -->
+<!--                                     </li> -->
+<!--                                     <li> -->
+<!--                                         <a href="dashAssets/pages/widgets/infobox/infobox-5.html">Infobox-5</a> -->
+<!--                                     </li> -->
                                 </ul>
                             </li>
                         </ul>
@@ -68,79 +68,80 @@
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">swap_calls</i>
-                            <span>User Interface (UI)</span>
+                            <span>Stock Management</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="dashAssets/pages/ui/alerts.html">Alerts</a>
+                                <a href="${contextRoot}/viewStocks">View Stocks</a>
                             </li>
                             <li>
-                                <a href="dashAssets/pages/ui/animations.html">Animations</a>
+                                <a href="${contextRoot}/viewProducts">View Products</a>
                             </li>
                             <li>
-                                <a href="dashAssets/pages/ui/badges.html">Badges</a>
+                                <a href="dashAssets/pages/ui/animations.html">Add Product</a>
+                            </li>
+                            <li>
+                                <a href="dashAssets/pages/ui/badges.html">Add Category</a>
                             </li>
 
-                            <li>
-                                <a href="dashAssets/pages/ui/breadcrumbs.html">Breadcrumbs</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/collapse.html">Collapse</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/colors.html">Colors</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/dialogs.html">Dialogs</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/icons.html">Icons</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/labels.html">Labels</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/list-group.html">List Group</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/media-object.html">Media Object</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/modals.html">Modals</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/notifications.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/pagination.html">Pagination</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/preloaders.html">Preloaders</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/progressbars.html">Progress Bars</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/range-sliders.html">Range Sliders</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/sortable-nestable.html">Sortable & Nestable</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/tabs.html">Tabs</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/thumbnails.html">Thumbnails</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/tooltips-popovers.html">Tooltips & Popovers</a>
-                            </li>
-                            <li>
-                                <a href="dashAssets/pages/ui/waves.html">Waves</a>
-                            </li>
+                            
+<!--                             <li> -->
+<%--                                 <a href="${contextRoot}/viewCategory">View Category</a> --%>
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/collapse.html">Collapse</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/colors.html">Colors</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/dialogs.html">Dialogs</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/icons.html">Icons</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/labels.html">Labels</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/list-group.html">List Group</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/media-object.html">Media Object</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/modals.html">Modals</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/notifications.html">Notifications</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/pagination.html">Pagination</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/preloaders.html">Preloaders</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/progressbars.html">Progress Bars</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/range-sliders.html">Range Sliders</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/sortable-nestable.html">Sortable & Nestable</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/tabs.html">Tabs</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/thumbnails.html">Thumbnails</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/tooltips-popovers.html">Tooltips & Popovers</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="dashAssets/pages/ui/waves.html">Waves</a> -->
+<!--                             </li> -->
                         </ul>
                     </li>
                     <li>
