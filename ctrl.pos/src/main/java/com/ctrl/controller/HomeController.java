@@ -64,4 +64,7 @@ public class HomeController {
 		mv.addObject("userClickViewProduct", true);
 		return mv;
 	}
+	
+	//My Commit
+	
 }
