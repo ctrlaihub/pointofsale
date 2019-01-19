@@ -1,3 +1,4 @@
+       
             <div class="user-info">
                 <div class="image">
                     <img src="dashAssets/images/user.png" width="48" height="48" alt="User" />

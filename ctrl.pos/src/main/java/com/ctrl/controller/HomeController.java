@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ctrl.domains.Address;
@@ -43,14 +45,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/login1")
-	public ModelAndView login1(@ModelAttribute("user") User user, HttpServletRequest request) {
-		User userResult = userService.findUser(user.getName(), user.getPassword());
-		request.getSession().setAttribute("RAMA", user.getName());
+	public ModelAndView login1(@RequestParam("username") String userName,@RequestParam("password") String password, HttpServletRequest request) {
+		//System.out.println(userName+password);
+		User userResult = userService.findUserByEmail(userName,password);
 		
 		ModelAndView mv = new ModelAndView("login1");
-		if (userResult != null)
+		if (userResult != null) 
+		{
+			
+			request.getSession().setAttribute("uname", userResult.getName());
 			return new ModelAndView("redirect:/adminDash");
-		else {
+		}
+		else 
+		{
 			String message = "<h4><font color = 'red'>" + "Sorry! Wrong Username/Password. Please Try Again. </font></h4>";
 			mv.addObject("message", message);
 			return mv;
@@ -60,8 +67,8 @@ public class HomeController {
 	@RequestMapping(value = "/adminDash")
 	public ModelAndView adminDash(HttpServletRequest request) {
 		
-		System.out.println("Get Attribute ----------->  " + request.getSession().getAttribute("RAMA"));
-		if(request.getSession().getAttribute("RAMA")==null || request.getSession(false).getAttribute("RAMA")==""){
+		System.out.println("Get Attribute ----------->  " + request.getSession().getAttribute("uname"));
+		if(request.getSession().getAttribute("uname")==null || request.getSession(false).getAttribute("uname")==""){
 			return new ModelAndView("redirect:/");
 		}
 		

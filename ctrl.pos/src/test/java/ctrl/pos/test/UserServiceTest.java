@@ -76,7 +76,6 @@ public class UserServiceTest {
 //		userService.listAllManagers().forEach(l1::add);
 //		System.out.println(l1);
 		
-		User us = userService.findUser("Rama", "Rama");
 		
 	}
 }

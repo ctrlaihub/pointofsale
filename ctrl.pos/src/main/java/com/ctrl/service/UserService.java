@@ -79,8 +79,10 @@ public class UserService {
 		return userRepository.findByAuthority(Authority.SELLER);
 	}
 	
-	public User findUser(String name, String pwd){
+
+	
+	public User findUserByEmail(String email, String pwd){
 		
-		return userRepository.findByNameAndPassword(name,pwd);
-	}	
+		return userRepository.findByEmailAndPassword(email, pwd);
+	}
 }
