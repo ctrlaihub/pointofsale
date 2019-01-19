@@ -1,6 +1,5 @@
 package ctrl.pos.test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +15,6 @@ import com.ctrl.cfg.Application;
 import com.ctrl.domains.Address;
 import com.ctrl.domains.Authority;
 import com.ctrl.domains.User;
-import com.ctrl.domains.stock.Category;
 import com.ctrl.service.UserService;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +28,7 @@ public class UserServiceTest {
 	@Test
 	public void CreateUser(){
 		
-		User user=new User();
+/*		User user=new User();
 		
 		user.setActive(true);
 		user.setEmail("deepane3e@gmail.com");
@@ -71,11 +69,14 @@ public class UserServiceTest {
 		authorityy.add(Authority.MANAGER);
 		userr.setAuthority(authorityy);
 		
-		userService.createUser(user);
+		userService.createUser(user);*/
 //		userService.createUser(userr);
 		
 //		List<User> l1=new ArrayList<>();
 //		userService.listAllManagers().forEach(l1::add);
 //		System.out.println(l1);
+		
+		User us = userService.findUser("Rama", "Rama");
+		
 	}
 }

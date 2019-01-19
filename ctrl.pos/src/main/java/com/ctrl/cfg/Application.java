@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+
 @SpringBootApplication
 @ComponentScan({"com.ctrl.controller","com.ctrl.service","com.ctrl.dao","com.ctrl.exception"})
 @EntityScan({"com.ctrl.domains","com.ctrl.domains.stock"})
 @EnableJpaRepositories({"com.ctrl.repository"})
 public class Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

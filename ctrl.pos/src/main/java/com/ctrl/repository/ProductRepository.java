@@ -10,6 +10,7 @@ import com.ctrl.domains.stock.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	List<Product> findByActive(boolean b);
+	
 //	List<Product> findByCategory();
 
 }

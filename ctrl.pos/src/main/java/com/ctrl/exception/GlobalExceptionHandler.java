@@ -7,7 +7,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ModelAndView handlerNoHandlerFoundException(){
 		ModelAndView mv=new ModelAndView("error404");

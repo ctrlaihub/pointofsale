@@ -76,7 +76,6 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 	public Date getExpiryDate() {
 		return expiryDate;
 	}
@@ -95,6 +94,4 @@ public class Product {
 				+ ", price=" + price + ", sellingprice=" + sellingprice + ", quantity=" + quantity + ", expiryDate="
 				+ expiryDate + ", active=" + active + "]";
 	}
-	
-	
 }

@@ -1,6 +1,5 @@
 package com.ctrl.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,6 @@ public class CategoryService {
 	
 	@Autowired
 	private CategoryDao categoryDao;
-	
 	
 	/*
 	 * For creating new Category

@@ -1,7 +1,11 @@
 <section class="content">
+<script>
+alert("Hi how are you");
+</script>
+
         <div class="container-fluid">
             <div class="block-header">
-                <h2>DASHBOARD</h2>
+                <h2>WELCOME ${RAMA}</h2>
             </div>
 
             <!-- Widgets -->

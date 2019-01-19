@@ -78,4 +78,9 @@ public class UserService {
 	public List<User> listAllSellers(){
 		return userRepository.findByAuthority(Authority.SELLER);
 	}
+	
+	public User findUser(String name, String pwd){
+		
+		return userRepository.findByNameAndPassword(name,pwd);
+	}	
 }

@@ -16,9 +16,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class User {
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false)
 	private long id;
 	@Column(nullable = false)
@@ -78,12 +77,9 @@ public class User {
 	public void setAuthority(Set<Authority> authority) {
 		this.authority = authority;
 	}
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", active="
 				+ active + ", address=" + address + ", authority=" + authority + "]";
 	}
-	
-	
 }

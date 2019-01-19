@@ -1,12 +1,20 @@
 package com.ctrl.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ctrl.domains.Address;
 import com.ctrl.domains.User;
+import com.ctrl.domains.stock.Category;
+import com.ctrl.domains.stock.Product;
+import com.ctrl.service.CategoryService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
@@ -15,53 +23,129 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private ProductService productService;
-	
-	@RequestMapping(value="/")
-	public String home(){
-		return "login";
+
+	@Autowired
+	private CategoryService categoryService;
+
+	@RequestMapping(value = "/")
+	public String home(HttpSession session, HttpServletRequest request,HttpServletResponse response) {
+		String sid = session.getId();
+		System.out.println(" sid------------> " + sid);
+		//HttpSession sessionObj = request.getSession(true);
+		//sessionObj.setMaxInactiveInterval(7);
+		//int timeout = sessionObj.getMaxInactiveInterval();
+		// System.out.println(" TIMEOUT----------> " + timeout);
+		//response.setHeader("Refresh", timeout + "; URL=login1.jsp");
+		return "login1";
 	}
 	
-	@RequestMapping(value="/adminDash")
-	public ModelAndView adminDash(){
-		ModelAndView mv=new ModelAndView("adminDash");
+	@RequestMapping(value = "/login1")
+	public ModelAndView login1(@ModelAttribute("user") User user, HttpServletRequest request) {
+		User userResult = userService.findUser(user.getName(), user.getPassword());
+		request.getSession().setAttribute("RAMA", user.getName());
+		
+		ModelAndView mv = new ModelAndView("login1");
+		if (userResult != null)
+			return new ModelAndView("redirect:/adminDash");
+		else {
+			String message = "<h4><font color = 'red'>" + "Sorry! Wrong Username/Password. Please Try Again. </font></h4>";
+			mv.addObject("message", message);
+			return mv;
+		}
+	}
+
+	@RequestMapping(value = "/adminDash")
+	public ModelAndView adminDash(HttpServletRequest request) {
+		
+		System.out.println("Get Attribute ----------->  " + request.getSession().getAttribute("RAMA"));
+		if(request.getSession().getAttribute("RAMA")==null || request.getSession(false).getAttribute("RAMA")==""){
+			return new ModelAndView("redirect:/");
+		}
+		
+		ModelAndView mv = new ModelAndView("testing");
 		mv.addObject("userClickHome", true);
-		return mv;		
+		return mv;
 	}
-	
-	@RequestMapping(value="/viewEmployees")
-	public ModelAndView employee(){
-		ModelAndView mv=new ModelAndView("adminDash");
-		mv.addObject("users",userService.listAllActiveUsers());
-		mv.addObject("allusers",userService.listAllUsers());
+
+	@RequestMapping(value = "/viewEmployees")
+	public ModelAndView employee() {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("users", userService.listAllActiveUsers());
+		mv.addObject("allusers", userService.listAllUsers());
 		mv.addObject("userClickEmployee", true);
 		return mv;
 	}
-	
-	@RequestMapping(value="/addEmployee")
-	public ModelAndView addEmployee(@ModelAttribute("user") User user){
-		ModelAndView mv=new ModelAndView("adminDash");
-		mv.addObject("result",userService.createUser(user));
+
+	@RequestMapping(value = "/addEmployee")
+	public ModelAndView addEmployee() {
+		ModelAndView mv = new ModelAndView("adminDash");
 		mv.addObject("userClickAddEmployee", true);
 		return mv;
 	}
-	
-	@RequestMapping(value="/viewStocks")
-	public ModelAndView viewStocks(){
-		ModelAndView mv=new ModelAndView("adminDash");
-		mv.addObject("activestocks",productService.listAllActiveProducts());
+
+	@RequestMapping(value = "/addEmployee1")
+	public ModelAndView addEmployee1(@ModelAttribute("address") Address address, @ModelAttribute("user") User user) {
+		user.setAddress(address);
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("result", userService.createUser(user));
+		mv.addObject("userClickAddEmployee1", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/viewStocks")
+	public ModelAndView viewStocks() {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("activestocks", productService.listAllActiveProducts());
 		mv.addObject("userClickViewStock", true);
 		return mv;
 	}
-	
-	@RequestMapping(value="/viewProducts")
-	public ModelAndView viewProducts(){
-		ModelAndView mv=new ModelAndView("adminDash");
-		mv.addObject("products",productService.listAllProducts());
-		mv.addObject("activeproducts",productService.listAllActiveProducts());
+
+	@RequestMapping(value = "/viewProducts")
+	public ModelAndView viewProducts() {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("products", productService.listAllProducts());
+		mv.addObject("activeproducts", productService.listAllActiveProducts());
 		mv.addObject("userClickViewProduct", true);
 		return mv;
+	}
+
+	@RequestMapping(value = "/addProduct")
+	public ModelAndView addProduct() {
+		ModelAndView mv = new ModelAndView("adminDash");	
+		mv.addObject("categoryList", categoryService.listAllCategory());	
+		mv.addObject("userClickAddProduct", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/addProduct1")
+	public ModelAndView addProduct1(@ModelAttribute("product") Product product) {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("addProduct", productService.createProduct(product));
+		mv.addObject("userClickAddProduct", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/addCategory")
+	public ModelAndView addCategory() {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("userClickAddCategory", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/addCategory1")
+	public ModelAndView addCategory1(@ModelAttribute("category") Category category) {
+		ModelAndView mv = new ModelAndView("adminDash");
+		boolean result = categoryService.addCategory(category);
+		if (result) {
+			String message = "<h4><font color = 'red'>" + category.getName()
+					+ " category added Successfully.</font></h4>";
+			mv.addObject("message", message);
+			mv.addObject("userClickAddCategory1", true);
+			return mv;
+		} else
+			return new ModelAndView("redirect:./shared/dashboard.jsp");
 	}
 }

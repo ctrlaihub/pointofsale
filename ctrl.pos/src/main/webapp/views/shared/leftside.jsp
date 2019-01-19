@@ -7,6 +7,7 @@
                             <span>Home</span>
                         </a>
                     </li>
+                     
 <!--                     <li> -->
 <!--                         <a href="dashAssets/pages/typography.html"> -->
 <!--                             <i class="material-icons">text_fields</i> -->
@@ -78,10 +79,13 @@
                                 <a href="${contextRoot}/viewProducts">View Products</a>
                             </li>
                             <li>
-                                <a href="dashAssets/pages/ui/animations.html">Add Product</a>
+                                <a href="${contextRoot}/addProduct">Add Product</a>
                             </li>
+                            <!-- <li>
+                                <a href="dashAssets/pages/ui/animations.html">Add Product</a>
+                            </li> -->
                             <li>
-                                <a href="dashAssets/pages/ui/badges.html">Add Category</a>
+                                <a href="${contextRoot}/addCategory">Add Category</a>
                             </li>
 
                             

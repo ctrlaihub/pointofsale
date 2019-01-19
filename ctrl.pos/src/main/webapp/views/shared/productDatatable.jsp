@@ -1,6 +1,7 @@
 <section class="content">
         <div class="container-fluid">
             <div class="block-header">
+            <script>alert("HI Hello");</script>
 <!--                 <h2> -->
 <!--                     JQUERY DATATABLES -->
 <!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
@@ -65,8 +66,7 @@
                                             <td>${activeproduct.sellingprice}</td>
                                             <td>${activeproduct.category.name}</td>
                                             <td>${activeproduct.quantity}</td>
-                                            <td>${activeproduct.expiryDate}</td>
-                                                                                       
+                                            <td>${activeproduct.expiryDate}</td>                                        
                                         </tr>
                                         </c:forEach>
                                     </tbody>
