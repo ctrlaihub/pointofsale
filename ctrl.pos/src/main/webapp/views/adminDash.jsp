@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<metbaa charset="UTF-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -132,15 +132,11 @@
 		</aside>
 		<!-- #END# Left Sidebar -->
 
-
 		<!-- Right Sidebar -->
 		<%@include file="./shared/rightside.jsp"%>
 		<!-- #END# Right Sidebar -->
-		
-		
+				
 	</section>
-		
-		
         
 	<c:if test="${userClickHome==true }">
 		<%@include file="./shared/dashboard.jsp"%>
@@ -173,16 +169,41 @@
 	<c:if test="${userClickAddCategory1==true}">
 		<%@include file="./shared/addCategory.jsp"%>
 	</c:if>
+	
+	<c:if test="${userClickAddCustomer1==true }">
+		<%@include file="./shared/addCustomer.jsp"%>
+	</c:if>
 
+	<c:if test="${userClickAddCustomer==true }">
+		<%@include file="./shared/addCustomer.jsp"%>
+	</c:if>
+	
 	<c:if test="${userClickViewStock==true }">
 		<%@include file="./shared/stocksDatatable.jsp"%>
 	</c:if>
 
-	<c:if test="${userClickLogin==false}">
+	<c:if test="${userViewCustomer==true }">
+		<%@include file="./shared/viewCustomer.jsp"%>
+	</c:if>
+
+	<c:if test="${userViewCustomer1==true }">
+		<%@include file="./shared/viewCustomer1.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickEditCustomer==true }">
+		<%@include file="./shared/editCustomer.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickEditCustomer1==true }">
+		<%@include file="./shared/editCustomer.jsp"%>
+	</c:if>
+	
+
+	<%-- <c:if test="${userClickLogin==false}">
 		<%@include file="./login1.jsp"%>
 	</c:if>
 
-	<!-- Jquery Core Js -->
+ --%>	<!-- Jquery Core Js -->
 	<script src="dashAssets/plugins/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core Js -->

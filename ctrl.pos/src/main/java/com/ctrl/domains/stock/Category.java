@@ -10,8 +10,7 @@ import javax.persistence.Id;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false)
 	private String name;

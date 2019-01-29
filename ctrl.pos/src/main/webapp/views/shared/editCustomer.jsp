@@ -1,7 +1,9 @@
 <section class="content">
 	<div class="container-fluid">
 		<div class="block-header">
-			${message}
+		<script type="text/javascript">
+		alert("I am in Edit Customer.jsp");
+		</script>
 			<!--                 <h2> -->
 			<!--                     JQUERY DATATABLES -->
 			<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
@@ -12,7 +14,7 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="card">
 					<div class="header">
-						<h2>Add Customer</h2>
+						<h2>Edit Customer</h2>
 						<ul class="header-dropdown m-r--5">
 							<li class="dropdown"><a href="javascript:void(0);"
 								class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -27,53 +29,53 @@
 						</ul>
 					</div>
 					<div class="body">
-						<form action="addCustomer1">
+						<form action="editCustomer1">
+						<input type = "hidden" name="id" value="${customer.id}">
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="custName" /> <label
+									<input type="text" class="form-control" name="custName" value="${customer.custName}"/> <label
 										class="form-label">Customer Name</label>
 								</div>
 							</div>
 
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="custMobileNo" /> <label
+									<input type="text" class="form-control" name="custMobileNo" value = "${customer.custMobileNo}"/> <label
 										class="form-label">Mobile No </label>
 								</div>
 							</div>
 
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="email" /> <label
+									<input type="text" class="form-control" name="email" value = "${customer.email}"/> <label
 										class="form-label">E-Mail</label>
 								</div>
 							</div>
 
-
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="street" /> <label
+									<input type="text" class="form-control" name="street" value = "${customer.address.street}"/> <label
 										class="form-label">Street</label>
 								</div>
 							</div>
 
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="city" /> <label
+									<input type="text" class="form-control" name="city" value = "${customer.address.city}"/> <label
 										class="form-label">City</label>
 								</div>
 							</div>
 
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="state" /> <label
+									<input type="text" class="form-control" name="state" value = "${customer.address.state}"/> <label
 										class="form-label">State</label>
 								</div>
 							</div>
 
 							<div class="form-group form-float">
 								<div class="form-line">
-									<input type="text" class="form-control" name="zipcode" /> <label
+									<input type="text" class="form-control" name="zipcode" value = "${customer.address.zipcode}"/> <label
 										class="form-label">ZipCode</label>
 								</div>
 							</div>

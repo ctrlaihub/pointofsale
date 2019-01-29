@@ -25,12 +25,14 @@ public class CategoryService {
 	 * For creating new Category
 	 *
 	 * */
+	@Transactional
 	public boolean addCategory(Category category){
 		try{
 		categoryRepository.save(category);
 		return true;
 		}
 		catch(Exception e){
+			System.out.println("Exception -----------------> " + e);
 			return false;
 		}
 	}
@@ -73,17 +75,17 @@ public class CategoryService {
 			return false;
 		}
 	 * */
-	public boolean deleteCategory(Category category){
+	/*public boolean deleteCategory(Category category){
 		try{
 			categoryDao.updateCategory(category);
 			return true;
 		}catch(Exception e){
 			return false;
 		}
-	}
+	}*/
 	
 	
-	public boolean updateCategory(Category category){
+	/*public boolean updateCategory(Category category){
 		return true;
-	}
+	}*/
 }

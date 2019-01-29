@@ -13,10 +13,10 @@ public class CategoryDao {
 	@PersistenceContext	
 	private EntityManager entityManager;
 	
-	public void updateCategory(Category category){
+	/*public void updateCategory(Category category){
 		
 	Category oldData=(Category)entityManager.find(Category.class, category.getId());
 		oldData.setActive(false);
 //		entityManager.merge(oldData);
-	}
+	}*/
 }

@@ -48,10 +48,10 @@
                                 </a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-1.html">View Customers</a>
+                                        <a href="${contextRoot}/viewCustomer">View Customers</a>
                                     </li>
                                     <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-2.html">Add Customer</a>
+                                        <a href="${contextRoot}/addCustomer">Add Customer</a>
                                     </li>
 <!--                                     <li> -->
 <!--                                         <a href="dashAssets/pages/widgets/infobox/infobox-3.html">Infobox-3</a> -->

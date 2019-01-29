@@ -7,16 +7,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ctrl.domains.Address;
+import com.ctrl.domains.Customer;
 import com.ctrl.domains.User;
 import com.ctrl.domains.stock.Category;
 import com.ctrl.domains.stock.Product;
 import com.ctrl.service.CategoryService;
+import com.ctrl.service.CustomerService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
@@ -32,33 +33,36 @@ public class HomeController {
 	@Autowired
 	private CategoryService categoryService;
 
+	@Autowired
+	private CustomerService customerService;
+
 	@RequestMapping(value = "/")
-	public String home(HttpSession session, HttpServletRequest request,HttpServletResponse response) {
+	public String home(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String sid = session.getId();
 		System.out.println(" sid------------> " + sid);
-		//HttpSession sessionObj = request.getSession(true);
-		//sessionObj.setMaxInactiveInterval(7);
-		//int timeout = sessionObj.getMaxInactiveInterval();
+		// HttpSession sessionObj = request.getSession(true);
+		// sessionObj.setMaxInactiveInterval(7);
+		// int timeout = sessionObj.getMaxInactiveInterval();
 		// System.out.println(" TIMEOUT----------> " + timeout);
-		//response.setHeader("Refresh", timeout + "; URL=login1.jsp");
+		// response.setHeader("Refresh", timeout + "; URL=login1.jsp");
 		return "login1";
 	}
-	
+
 	@RequestMapping(value = "/login1")
-	public ModelAndView login1(@RequestParam("username") String userName,@RequestParam("password") String password, HttpServletRequest request) {
-		//System.out.println(userName+password);
-		User userResult = userService.findUserByEmail(userName,password);
-		
+	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
+			HttpServletRequest request) {
+		User userResult = userService.findUserByEmail(userName, password);
+		String message = null;
 		ModelAndView mv = new ModelAndView("login1");
-		if (userResult != null) 
-		{
-			
+		if (userResult != null) {
+			mv = new ModelAndView("adminDash");
+			mv.addObject("name", userResult.getName());
+			mv.addObject("email", userResult.getEmail());
 			request.getSession().setAttribute("uname", userResult.getName());
-			return new ModelAndView("redirect:/adminDash");
-		}
-		else 
-		{
-			String message = "<h4><font color = 'red'>" + "Sorry! Wrong Username/Password. Please Try Again. </font></h4>";
+			mv.addObject("userClickHome", true);
+			return mv;
+		} else {
+			message = "<h5><font color = 'red'>" + "Sorry! Wrong Username/Password. Please Try Again. </font></h5>";
 			mv.addObject("message", message);
 			return mv;
 		}
@@ -66,12 +70,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/adminDash")
 	public ModelAndView adminDash(HttpServletRequest request) {
-		
+
 		System.out.println("Get Attribute ----------->  " + request.getSession().getAttribute("uname"));
-		if(request.getSession().getAttribute("uname")==null || request.getSession(false).getAttribute("uname")==""){
+		if (request.getSession().getAttribute("uname") == null
+				|| request.getSession(false).getAttribute("uname") == "") {
 			return new ModelAndView("redirect:/");
 		}
-		
+
 		ModelAndView mv = new ModelAndView("testing");
 		mv.addObject("userClickHome", true);
 		return mv;
@@ -102,6 +107,112 @@ public class HomeController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/addCustomer")
+	public ModelAndView addCustomer() {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("userClickAddCustomer", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/addCustomer1")
+	public ModelAndView addCustomer1(@ModelAttribute("address") Address address,
+			@ModelAttribute("customer") Customer customer) {
+		customer.setAddress(address);
+		ModelAndView mv = new ModelAndView("adminDash");
+		boolean result = customerService.addCustomer(customer);
+		if (result) {
+			String message = "<h4><font color = 'red'>" + customer.getCustName()
+					+ "  - Customer added Successfully.</font></h4>";
+			mv.addObject("message", message);
+			mv.addObject("userClickAddCustomer1", true);
+			return mv;
+		} else
+			return new ModelAndView("redirect:./shared/dashboard.jsp");
+	}
+
+	@RequestMapping(value = "/viewCustomer")
+	public ModelAndView viewCustomer() {
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("userViewCustomer", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/viewCustomer1")
+	public ModelAndView viewCustomer1(@RequestParam("mobile") long mobile) {
+		ModelAndView mv = new ModelAndView("adminDash");
+		Customer cc = customerService.listAllCustomers(mobile);
+		System.out.println("Customer Object for View" + cc);
+		mv.addObject("customers", customerService.listAllCustomers(mobile));
+		mv.addObject("userViewCustomer1", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/editCustomer")
+	public ModelAndView editCustomer(@RequestParam("custId") long custId, @RequestParam("custName") String custName,
+			@RequestParam("email") String email, @RequestParam("mobile") long mobile,
+			@RequestParam("street") String street, @RequestParam("city") String city,
+			@RequestParam("street") String state, @RequestParam("zipcode") long zipcode,
+			@RequestParam("addressid") long addressid) {
+		Address ad = new Address();
+		ad.setAddressid(addressid);
+		ad.setCity(city);
+		ad.setState(state);
+		ad.setStreet(street);
+		ad.setZipcode(zipcode);
+		Customer cs = new Customer();
+		cs.setId(custId);
+		cs.setCustName(custName);
+		cs.setCustMobileNo(mobile);
+		cs.setEmail(email);
+		cs.setAddress(ad);
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("customer", cs);
+		mv.addObject("userClickEditCustomer", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/editCustomer1")
+	public ModelAndView editCustomer1(@ModelAttribute("customer") Customer customer) {
+		ModelAndView mv = new ModelAndView("adminDash");
+		Customer customer1 = customerService.updateCustomer(customer);
+		System.out.println(customer1.getAddress());
+		if (customer1!=null) {
+			String message = "<h4><font color = 'red'>" + customer.getCustName() + " Updated Successfully.</font></h4>";
+			mv.addObject("message", message);
+			mv.addObject("customers", customer1);
+			mv.addObject("userViewCustomer1", true);
+			return mv;
+		} else
+			return new ModelAndView("redirect:./shared/dashboard.jsp");
+	}
+
+	/*
+	 * @RequestMapping(value = "/TESTeditCustomer", method = RequestMethod.POST,
+	 * consumes = MediaType.APPLICATION_JSON_VALUE)
+	 * 
+	 * @ResponseBody public ModelAndView editCustomer() { Customer customer = new
+	 * Customer(); System.out.println("TEST EDIT Customer"); //
+	 * System.out.println(customer); System.out.println(customer.getAddress());
+	 * System.out.println(customer.getEmail());
+	 * System.out.println(customer.getCustType());
+	 * System.out.println("Mobile Number --> " + customer.getCustMobileNo());
+	 * System.out.println("Customer Name --> " + customer.getCustName());
+	 * System.out.println("Iam here-->"); ModelAndView mv = new
+	 * ModelAndView("adminDash"); // mv.addObject("customer", customer);
+	 * System.out.println("Iam here1-->"); mv.addObject("userClickHome", true);
+	 * System.out.println("Iam here2-->"); return mv; }
+	 * 
+	 * @RequestMapping(value = "/TESTeditCustomer1") public ModelAndView
+	 * TesteditCustomer1(@ModelAttribute("customer") Customer customer) {
+	 * System.out.println("TEST EDIT Customer1"); ModelAndView mv = new
+	 * ModelAndView("adminDash"); boolean result =
+	 * customerService.updateCustomer(customer); if (result) { String message =
+	 * "<h4><font color = 'red'>" + customer.getCustName() +
+	 * " Updated Successfully.</font></h4>"; mv.addObject("message", message);
+	 * mv.addObject("customers", customer); mv.addObject("userViewCustomer1", true);
+	 * return mv; } else return new ModelAndView("redirect:./shared/dashboard.jsp");
+	 * }
+	 */
 	@RequestMapping(value = "/viewStocks")
 	public ModelAndView viewStocks() {
 		ModelAndView mv = new ModelAndView("adminDash");
@@ -121,8 +232,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/addProduct")
 	public ModelAndView addProduct() {
-		ModelAndView mv = new ModelAndView("adminDash");	
-		mv.addObject("categoryList", categoryService.listAllCategory());	
+		ModelAndView mv = new ModelAndView("adminDash");
+		mv.addObject("categoryList", categoryService.listAllCategory());
 		mv.addObject("userClickAddProduct", true);
 		return mv;
 	}

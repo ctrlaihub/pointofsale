@@ -54,7 +54,7 @@ public class UserService {
 	 * To SOFT delete User
 	 * 
 	 */
-	public boolean deleteUser(User user){
+/*	public boolean deleteUser(User user){
 		try{
 			userDao.updateUser(user);
 			return true;
@@ -62,7 +62,7 @@ public class UserService {
 			return false;
 		}
 	}
-	
+*/	
 	public List<User> listAllManagers(){
 		return userRepository.findByAuthority(Authority.MANAGER);
 	}
@@ -78,11 +78,8 @@ public class UserService {
 	public List<User> listAllSellers(){
 		return userRepository.findByAuthority(Authority.SELLER);
 	}
-	
-
-	
-	public User findUserByEmail(String email, String pwd){
 		
+	public User findUserByEmail(String email, String pwd){	
 		return userRepository.findByEmailAndPassword(email, pwd);
 	}
 }
