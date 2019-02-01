@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ctrl.domains.Address;
+import com.ctrl.domains.CustAddress;
 import com.ctrl.domains.Customer;
 import com.ctrl.domains.User;
 import com.ctrl.domains.stock.Category;
@@ -115,7 +116,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/addCustomer1")
-	public ModelAndView addCustomer1(@ModelAttribute("address") Address address,
+	public ModelAndView addCustomer1(@ModelAttribute("address") CustAddress address,
 			@ModelAttribute("customer") Customer customer) {
 		customer.setAddress(address);
 		ModelAndView mv = new ModelAndView("adminDash");
@@ -148,12 +149,12 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/editCustomer")
-	public ModelAndView editCustomer(@RequestParam("custId") long custId, @RequestParam("custName") String custName,
+	public ModelAndView editCustomer(@RequestParam("custId") String custId, @RequestParam("custName") String custName,
 			@RequestParam("email") String email, @RequestParam("mobile") long mobile,
 			@RequestParam("street") String street, @RequestParam("city") String city,
 			@RequestParam("street") String state, @RequestParam("zipcode") long zipcode,
 			@RequestParam("addressid") long addressid) {
-		Address ad = new Address();
+		CustAddress ad = new CustAddress();
 		ad.setAddressid(addressid);
 		ad.setCity(city);
 		ad.setState(state);

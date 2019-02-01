@@ -8,40 +8,60 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Customer {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(updatable = false, nullable = false)
-	private long id;
-	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+	@GenericGenerator(name = "book_seq", strategy = "com.ctrl.domains.StringPrefixedSequenceIdGenerator", parameters = {
+			// @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value =
+			// "50"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "CUST_"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	private String id;
+
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =
+	 * "XyzIdGenerator")
+	 * 
+	 * @GenericGenerator(name = "XyzIdGenerator", strategy =
+	 * "com.ctrl.domains.CustomerIdGenerator")
+	 * 
+	 * @Column(name = "id", unique = true, nullable = false) private String id;
+	 */
 	@Column(nullable = false)
 	private String custName;
-	
+
 	@Column(nullable = false)
 	private long custMobileNo;
-	
+
 	@Column(unique = true, nullable = false)
 	private String email;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
-	
+	private CustAddress address;
+
 	@Column(nullable = false)
 	private String custType;
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
+	/*
+	 * public long getId() { return id; }
+	 * 
+	 * public void setId(long id) { this.id = id; }
+	 */
 	public String getCustName() {
 		return custName;
 	}
@@ -66,11 +86,11 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Address getAddress() {
+	public CustAddress getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(CustAddress address) {
 		this.address = address;
 	}
 

@@ -13,8 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "User_Info")
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
