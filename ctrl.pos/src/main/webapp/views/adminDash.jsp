@@ -61,6 +61,11 @@
 
 <!-- Custom Css -->
 <link href="dashAssets/css/style.css" rel="stylesheet">
+
+<!-- Added By Vasanthi.B -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/> --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="theme-red">
 	<!-- Page Loader -->
@@ -198,7 +203,30 @@
 		<%@include file="./shared/editCustomer.jsp"%>
 	</c:if>
 	
-
+	<c:if test="${userClickResetPasswordLink==true }">
+		<%@include file="/views/forgot-password1.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickResetPassword==true }">
+		<%@include file="/views/ResetPassword.jsp"%>
+	</c:if>
+	
+	 <c:if test="${userClickHomeManager==true }">
+		<%@include file="./shared/dashboard11.jsp"%>
+	 </c:if>
+	
+	<c:if test="${userClickHomeCashier==true }">
+		<%@include file="./shared/dashboard12.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickHomeAdmin==true }">
+		<%@include file="./shared/dashboard13.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickHomeSeller==true }">
+		<%@include file="./shared/dashboard14.jsp"%>
+	</c:if>
+	
 	<%-- <c:if test="${userClickLogin==false}">
 		<%@include file="./login1.jsp"%>
 	</c:if>
@@ -277,7 +305,6 @@
 	<!-- Bootstrap Material Datetime Picker Plugin Js -->
 	<script
 		src="dashAssets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
 
 	<!-- Demo Js -->
 	<script src="dashAssets/js/demo.js"></script>

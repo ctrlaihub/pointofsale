@@ -4,19 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Insert title here</title>
 
-<!-- Added by Vasanthi for responsive Design --> 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Added by Vasanthi for responsive Design --> 
-	
 <!-- Favicon -->
 <link rel="icon" href="dashAssets/favicon.ico" type="image/x-icon">
 
@@ -46,7 +35,6 @@
 <body
 	style="background-image: url(dashAssets/images/Grocery7.jpg); background-repeat: no-repeat; background-size: cover;"
 	class="login-page">
-	<!-- <div class="container"> -->
 	<div class="login-box">
 		<!-- <div class="logo" align="center">
 				<h1>
@@ -55,55 +43,31 @@
 			</div> -->
 		<div class="card1">
 			<div class="body">
-				<form id="sign_in" method="POST" action="login1">
-					<div class="msg">LOGIN</div>
+				<form id="sign_in" method="POST" action="resetPassword1">
+				<input type = "hidden" name="email" value="${email}">
+					<div class="msg">Reset Password</div>
 					<div class="input-group">
-						<span class="input-group-addon"> <i class="material-icons">person</i>
-						</span>
 						<div class="form-line">
-							<input type="text" class="form-control" name="username"
-								placeholder="Username" required autofocus>
+							<input type="password" class="form-control" name="oldPass"
+								placeholder="New Password" required autofocus>
 						</div>
 					</div>
 					<div class="input-group">
-						<span class="input-group-addon"> <i class="material-icons">lock</i>
-						</span>
 						<div class="form-line">
-							<input type="password" class="form-control" name="password"
-								placeholder="Password" required>
+							<input type="password" class="form-control" name="newPass"
+								placeholder="Confirm New Password" required>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-xs-6 p-t-5">
-							<input type="checkbox" id="rememberme"
-								class="filled-in chk-col-pink"> <label for="rememberme">Remember
-								Me</label>
-						</div>
-						<!-- class="filled-in chk-col-pink" -->
-						<div class="col-xs-6 p-t-5">
-							<a href="/ctrlaihub/forgot-password">Forgot Password?</a>
-						</div>
-					</div>
-					<!-- m-t-15 m-b--20 -->
 					<div class="row">
 						<div class="col-xs-12">
-							<button class="btn btn-block bg-pink waves-effect" type="submit">SIGN
-								IN</button>
+							<button class="btn btn-block bg-pink waves-effect" type="submit">
+								Reset</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-		<div style="margin: 30px;">${message}</div>
 	</div>
-
-	<!-- <div style="margin-top: 148px">
-		<font color="white">© 2019 <strong>Developed and
-				maintained by</font> <a href="http://www.ctrlaihub.com" target="_blank"><img
-			src="dashAssets/images/hema logo.png" alt="Smiley face" height="32"
-			width="32"> <font color="000050">Ctrl</font><font
-			color="#006400">AiHub</font></strong></a>
-	</div> -->
 	<!-- Jquery Core Js -->
 	<script src="dashAssets/plugins/jquery/jquery.min.js"></script>
 
@@ -120,13 +84,6 @@
 	<script src="dashAssets/js/admin.js"></script>
 	<script src="dashAssets/js/pages/examples/sign-in.js"></script>
 	<!-- class = "pull-left" -->
-	<div style="position: absolute; margin: 30px; width: 100%; bottom: 0">
-		<font color="white">© 2019 <strong>Developed and
-				maintained by</font> <a href="http://www.ctrlaihub.com" target="_blank"><img
-			src="dashAssets/images/hema logo.png" alt="Smiley face" height="32"
-			width="32"> <font color="000050">Ctrl</font><font
-			color="#006400">AiHub</font></strong></a>
-	</div>
 </body>
 <!-- margin-top: 70px; -->
 </html>

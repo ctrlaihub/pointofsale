@@ -1,5 +1,7 @@
 package com.ctrl.domains;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -15,12 +20,19 @@ import org.hibernate.annotations.Parameter;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+	/*@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
 	@GenericGenerator(name = "book_seq", strategy = "com.ctrl.domains.StringPrefixedSequenceIdGenerator", parameters = {
 			// @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value =
 			// "50"),
 			@Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "CUST_"),
 			@Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	*/
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cust_seq")
+	@GenericGenerator(name = "cust_seq", strategy = "com.ctrl.domains.StringPrefixedSequenceIdGenerator2", parameters = {
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.VALUE_PREFIX_PARAMETER, value = "CUST_"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INCREMENT_PARAMETER, value = "10"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INITIAL_VALUE, value = "CUST_1")
+			})
 	private String id;
 
 	/*
@@ -48,6 +60,16 @@ public class Customer {
 
 	@Column(nullable = false)
 	private String custType;
+	
+	@Column(name="created_at", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date createdAt;
+
+	@PrePersist
+	protected void onCreate() {
+	    createdAt = new Date();
+	}
+	
 
 	public String getId() {
 		return id;

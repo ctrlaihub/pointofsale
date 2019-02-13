@@ -1,5 +1,7 @@
 package com.ctrl.controller;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ctrl.domains.Address;
+import com.ctrl.domains.Authority;
 import com.ctrl.domains.CustAddress;
 import com.ctrl.domains.Customer;
 import com.ctrl.domains.User;
@@ -36,7 +40,7 @@ public class HomeController {
 
 	@Autowired
 	private CustomerService customerService;
-
+	
 	@RequestMapping(value = "/")
 	public String home(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String sid = session.getId();
@@ -60,7 +64,27 @@ public class HomeController {
 			mv.addObject("name", userResult.getName());
 			mv.addObject("email", userResult.getEmail());
 			request.getSession().setAttribute("uname", userResult.getName());
-			mv.addObject("userClickHome", true);
+			Set<Authority> authority = userResult.getAuthority();
+			for(Authority auth:authority){
+				System.out.println("Set Value ---> " + auth);
+				switch(auth) {
+				case MANAGER:
+					mv.addObject("userClickHomeManager", true);
+					return mv;
+				case CASHIER:
+					mv.addObject("userClickHomeCashier", true);
+					return mv;
+				case ADMIN:
+					mv.addObject("userClickHomeAdmin", true);
+					return mv;
+				case SELLER:	
+					mv.addObject("userClickHomeSeller", true);
+					return mv;
+				default:
+					mv.addObject("userClickHome", true);
+					return mv;
+				}
+			}
 			return mv;
 		} else {
 			message = "<h5><font color = 'red'>" + "Sorry! Wrong Username/Password. Please Try Again. </font></h5>";
@@ -71,18 +95,42 @@ public class HomeController {
 
 	@RequestMapping(value = "/adminDash")
 	public ModelAndView adminDash(HttpServletRequest request) {
-
 		System.out.println("Get Attribute ----------->  " + request.getSession().getAttribute("uname"));
 		if (request.getSession().getAttribute("uname") == null
 				|| request.getSession(false).getAttribute("uname") == "") {
 			return new ModelAndView("redirect:/");
 		}
-
 		ModelAndView mv = new ModelAndView("testing");
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
-
+	
+	@RequestMapping(value = "/forgot-password")
+	public String forgotPassword() {
+		return "forgot-password1";
+	}
+	
+	@RequestMapping(value = "/resetPasswordEmail")
+	public ModelAndView resetPasswordEmail(@RequestParam("email") String email) {
+		ModelAndView mv = new ModelAndView("forgot-password1");
+		mv.addObject("msg", userService.sendMail(email));
+		return mv;	
+	}
+	
+	@RequestMapping(value = "/resetPassword")
+	public ModelAndView resetPassword(@RequestParam("email") String email) {
+		ModelAndView mv = new ModelAndView("ResetPassword");
+		mv.addObject("email", email);
+		return mv;	
+	}
+	
+	@RequestMapping(value = "/resetPassword1")
+	public ModelAndView resetPassword1(@RequestParam("email") String email, @RequestParam("newPass") String password) {
+		ModelAndView mv = new ModelAndView("login1");
+		mv.addObject("message", userService.updatePassword(email, password));
+		return mv;
+	}
+	
 	@RequestMapping(value = "/viewEmployees")
 	public ModelAndView employee() {
 		ModelAndView mv = new ModelAndView("adminDash");
@@ -252,6 +300,16 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("adminDash");
 		mv.addObject("userClickAddCategory", true);
 		return mv;
+	}
+	
+	@RequestMapping(value = "/deleteUser")
+	public @ResponseBody String deleteUser(@RequestParam("id") long id) {
+		System.out.println("DELETE USER INFORMATION ID ---> " + id);
+		boolean result = userService.deleteUser(id);
+		if(result)
+		return "OK";
+		else
+		return "OK";   // Need to Apply else part
 	}
 
 	@RequestMapping(value = "/addCategory1")

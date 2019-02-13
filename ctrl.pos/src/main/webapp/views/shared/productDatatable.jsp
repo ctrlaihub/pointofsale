@@ -41,6 +41,7 @@
                                             <th>Category</th>
                                             <th>Quantity</th>
                                             <th>Expiry Date</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -53,7 +54,7 @@
                                             <th>Category</th>
                                             <th>Quantity</th>
                                             <th>Expiry Date</th>
-                                            
+                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>

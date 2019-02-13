@@ -2,7 +2,12 @@ package com.ctrl.service;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +25,10 @@ public class UserService {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private JavaMailSender sender;
+
 	/*
 	 * For creating new User
 	 *
@@ -82,4 +91,45 @@ public class UserService {
 	public User findUserByEmail(String email, String pwd){	
 		return userRepository.findByEmailAndPassword(email, pwd);
 	}
+	
+	public String sendMail(String toMailAddress) {
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+
+		try {
+			helper.setTo(toMailAddress);
+			helper.setText(
+					"<html><body>Reset your password with this link <a href='http://localhost:8080/ctrlaihub/resetPassword?email="+ toMailAddress +"'>Reset Password</a><body></html>",
+					true);
+			helper.setSubject("Reset Password Link");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return "Error while sending mail ..";
+		}
+		sender.send(message);
+		return "<h4><font color = 'red'>Mail Sent! Please check your mail.</font></h4>";
+	}
+	
+	public String updatePassword(String email, String password) {
+		try {		
+			/*User userToUpdate = userRepository.getOne(user.getEmail());
+			userToUpdate.setPassword(user.getPassword());
+			userRepository.save(userToUpdate);*/
+			System.out.println( " SERVICE email --------> " +  email + " password ------> " + password);
+			userRepository.updatePassword(email, password);
+			return "<h5><font color = 'red'>" +"Password updated successfully. Login Again! </font></h5>";
+		} catch (Exception e) {
+			System.out.println("Exception -----------------> " + e);
+			return null;
+		}
+	}
+
+	public boolean deleteUser(long id) {	
+		try{
+			userRepository.deleteById(id);
+			return true;
+			}catch(Exception e){
+				return false;
+			}
+	}	
 }
