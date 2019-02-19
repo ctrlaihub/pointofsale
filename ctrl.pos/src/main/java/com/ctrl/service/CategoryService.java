@@ -42,6 +42,7 @@ public class CategoryService {
 	 * 
 	 * */
 	public List<Category> listAllCategory(){
+		System.out.println("List All Category ---> " + categoryRepository.findAll());
 		return categoryRepository.findAll();
 	}
 	
@@ -57,7 +58,7 @@ public class CategoryService {
 	 * To get category by id
 	 * 
 	 * */
-	public Optional<Category> getById(long id){
+	public Optional<Category> getById(String id){
 		return categoryRepository.findById(id);
 	}
 	

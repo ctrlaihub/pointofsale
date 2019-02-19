@@ -78,7 +78,7 @@ public class CategoryServiceTest {
 	@Ignore
 	public void getById(){
 		
-		assertEquals("success", 1, categoryService.getById(1));
+		assertEquals("success", 1, categoryService.getById("Cat_1"));
 
 	}
 }

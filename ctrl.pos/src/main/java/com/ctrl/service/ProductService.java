@@ -30,10 +30,12 @@ public class ProductService {
 	}
 	
 	public List<Product> listAllProducts(){
+		System.out.println("Within List all products ---> " + productRepository.findAll());
 		return productRepository.findAll();
 	}
 	
 	public List<Product> listAllActiveProducts(){
+		System.out.println("Within List all Active products ---> " + productRepository.findByActive(true));
 		return productRepository.findByActive(true);
 	}
 	

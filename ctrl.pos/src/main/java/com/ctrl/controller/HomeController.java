@@ -18,7 +18,7 @@ import com.ctrl.domains.Address;
 import com.ctrl.domains.Authority;
 import com.ctrl.domains.CustAddress;
 import com.ctrl.domains.Customer;
-import com.ctrl.domains.User;
+import com.ctrl.domains.Employee;
 import com.ctrl.domains.stock.Category;
 import com.ctrl.domains.stock.Product;
 import com.ctrl.service.CategoryService;
@@ -56,7 +56,7 @@ public class HomeController {
 	@RequestMapping(value = "/login1")
 	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
 			HttpServletRequest request) {
-		User userResult = userService.findUserByEmail(userName, password);
+		Employee userResult = userService.findUserByEmail(userName, password);
 		String message = null;
 		ModelAndView mv = new ModelAndView("login1");
 		if (userResult != null) {
@@ -148,7 +148,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/addEmployee1")
-	public ModelAndView addEmployee1(@ModelAttribute("address") Address address, @ModelAttribute("user") User user) {
+	public ModelAndView addEmployee1(@ModelAttribute("address") Address address, @ModelAttribute("user") Employee user) {
 		user.setAddress(address);
 		ModelAndView mv = new ModelAndView("adminDash");
 		mv.addObject("result", userService.createUser(user));
@@ -303,7 +303,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/deleteUser")
-	public @ResponseBody String deleteUser(@RequestParam("id") long id) {
+	public @ResponseBody String deleteUser(@RequestParam("id") String id) {
 		System.out.println("DELETE USER INFORMATION ID ---> " + id);
 		boolean result = userService.deleteUser(id);
 		if(result)

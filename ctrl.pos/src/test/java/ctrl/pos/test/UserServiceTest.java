@@ -1,9 +1,5 @@
 package ctrl.pos.test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ctrl.cfg.Application;
-import com.ctrl.domains.Address;
-import com.ctrl.domains.Authority;
-import com.ctrl.domains.User;
 import com.ctrl.service.UserService;
 
 @RunWith(SpringRunner.class)

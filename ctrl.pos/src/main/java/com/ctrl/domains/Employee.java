@@ -1,5 +1,6 @@
 package com.ctrl.domains;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,15 +14,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
-@Table(name = "User_Info")
-public class User {
+public class Employee {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(updatable = false, nullable = false)
-	private long id;
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@Column(updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_seq")
+	@GenericGenerator(name = "emp_seq", strategy = "com.ctrl.domains.StringPrefixedSequenceIdGenerator2", parameters = {
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.VALUE_PREFIX_PARAMETER, value = "EMP_"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INCREMENT_PARAMETER, value = "2"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INITIAL_VALUE, value = "EMP_1")
+			})
+	private String id;
 	@Column(nullable = false)
 	private String name;
 	@Column(unique = true, nullable = false)
@@ -37,10 +49,26 @@ public class User {
 //    @Column(name = "authority")
 	private Set<Authority> authority;
 	
-	public long getId() {
+	/*public long getId() {
 		return id;
 	}
 	public void setId(long id) {
+		this.id = id;
+	}*/
+	
+	@Column(name="created_at", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date createdAt;
+
+	@PrePersist
+	protected void onCreate() {
+	    createdAt = new Date();
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {

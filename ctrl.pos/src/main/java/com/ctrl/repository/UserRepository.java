@@ -8,20 +8,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ctrl.domains.Authority;
-import com.ctrl.domains.User;
+import com.ctrl.domains.Employee;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<Employee, String>{
 
-	List<User> findByActive(boolean b);
+	List<Employee> findByActive(boolean b);
 
-	List<User> findByAuthority(Authority authority);
+	List<Employee> findByAuthority(Authority authority);
 		
-	User findByEmailAndPassword(String email,String pwd);
+	Employee findByEmailAndPassword(String email,String pwd);
 	
 	@Modifying(clearAutomatically = true)
-	@Query("update User user set user.password=:pass where user.email =:email")
+	@Query("update Employee user set user.password=:pass where user.email =:email")
 	void updatePassword(@Param("email") String email, @Param("pass") String password);
 	
-	void deleteById(Long id);
-	
+	void deleteById(String id);
 }

@@ -23,7 +23,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_seq")
 	@GenericGenerator(name = "cat_seq", strategy = "com.ctrl.domains.StringPrefixedSequenceIdGenerator2", parameters = {
 			@Parameter(name = StringPrefixedSequenceIdGenerator2.VALUE_PREFIX_PARAMETER, value = "CAT_"),
-			@Parameter(name = StringPrefixedSequenceIdGenerator2.INCREMENT_PARAMETER, value = "100"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INCREMENT_PARAMETER, value = "5"),
 			@Parameter(name = StringPrefixedSequenceIdGenerator2.INITIAL_VALUE, value = "CAT_1")
 			})
 	private String id;

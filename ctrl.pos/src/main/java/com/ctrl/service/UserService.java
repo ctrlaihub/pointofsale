@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ctrl.dao.UserDao;
 import com.ctrl.domains.Authority;
-import com.ctrl.domains.User;
+import com.ctrl.domains.Employee;
 import com.ctrl.repository.UserRepository;
 
 @Service
@@ -33,7 +33,7 @@ public class UserService {
 	 * For creating new User
 	 *
 	 * */
-	public boolean createUser(User user){
+	public boolean createUser(Employee user){
 		try{
 			userRepository.save(user);
 			return true;
@@ -46,7 +46,7 @@ public class UserService {
 	 * To list all Users
 	 * 
 	 * */
-	public List<User> listAllUsers(){
+	public List<Employee> listAllUsers(){
 		return userRepository.findAll();
 	}
 	
@@ -54,7 +54,7 @@ public class UserService {
 	 * To list only active Users
 	 * 
 	 * */
-	public List<User> listAllActiveUsers()
+	public List<Employee> listAllActiveUsers()
 	{
 		return userRepository.findByActive(true);
 	}
@@ -72,23 +72,23 @@ public class UserService {
 		}
 	}
 */	
-	public List<User> listAllManagers(){
+	public List<Employee> listAllManagers(){
 		return userRepository.findByAuthority(Authority.MANAGER);
 	}
 	
-	public List<User> listAllAdmins(){
+	public List<Employee> listAllAdmins(){
 		return userRepository.findByAuthority(Authority.ADMIN);
 	}
 	
-	public List<User> listAllCashiers(){
+	public List<Employee> listAllCashiers(){
 		return userRepository.findByAuthority(Authority.CASHIER);
 	}
 	
-	public List<User> listAllSellers(){
+	public List<Employee> listAllSellers(){
 		return userRepository.findByAuthority(Authority.SELLER);
 	}
 		
-	public User findUserByEmail(String email, String pwd){	
+	public Employee findUserByEmail(String email, String pwd){	
 		return userRepository.findByEmailAndPassword(email, pwd);
 	}
 	
@@ -124,7 +124,7 @@ public class UserService {
 		}
 	}
 
-	public boolean deleteUser(long id) {	
+	public boolean deleteUser(String id) {	
 		try{
 			userRepository.deleteById(id);
 			return true;
