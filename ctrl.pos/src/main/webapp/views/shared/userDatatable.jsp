@@ -122,10 +122,15 @@
 			        }
 				});
 				$(this).parents("tr").find(".error").first().focus();
+				var trialValues = [];
 				if(!empty){
 					input.each(function(){
+						trialValues.push(JSON.stringify($(this).val()));
 						$(this).parent("td").html($(this).val());
 					});			
+					
+					alert("JSON Converted Value --> " + JSON.stringify(trialValues));
+					
 					$(this).parents("tr").find(".add, .edit").toggle();
 					$(".add-new").removeAttr("disabled");
 				}		

@@ -79,11 +79,11 @@
 							</div>
 
 							<div class="form-group">
-								<input type="checkbox" name="custType"
+								<input type="radio" class="with-gap" name="custType"
 									id="custType_checkbox_1"
 									class="with-gap filled-in chk-col-grey" value="NormCust" /> <label
 									for="custType_checkbox_1">Normal Customer</label> &nbsp&nbsp&nbsp <input
-									type="checkbox" name="custType" id="custType_checkbox_2"
+									type="radio" class="with-gap" name="custType" id="custType_checkbox_2"
 									class="with-gap filled-in chk-col-grey" value="LoyalCust" /><label
 									for="custType_checkbox_2">Loyalty Customer</label> 
 							</div>

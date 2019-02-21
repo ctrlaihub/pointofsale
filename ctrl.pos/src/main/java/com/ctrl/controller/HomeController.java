@@ -52,7 +52,7 @@ public class HomeController {
 		// response.setHeader("Refresh", timeout + "; URL=login1.jsp");
 		return "login1";
 	}
-
+	
 	@RequestMapping(value = "/login1")
 	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
 			HttpServletRequest request) {
