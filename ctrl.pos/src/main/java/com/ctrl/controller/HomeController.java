@@ -26,6 +26,7 @@ import com.ctrl.service.CustomerService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
+// Test ing
 @Controller
 public class HomeController {
 
