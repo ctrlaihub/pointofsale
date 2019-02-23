@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +29,6 @@ import com.ctrl.service.CustomerService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
-// Test ing
 @Controller
 public class HomeController {
 
@@ -41,7 +43,7 @@ public class HomeController {
 
 	@Autowired
 	private CustomerService customerService;
-	
+
 	@RequestMapping(value = "/")
 	public String home(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String sid = session.getId();
@@ -53,7 +55,7 @@ public class HomeController {
 		// response.setHeader("Refresh", timeout + "; URL=login1.jsp");
 		return "login1";
 	}
-	
+
 	@RequestMapping(value = "/login1")
 	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
 			HttpServletRequest request) {
@@ -66,9 +68,9 @@ public class HomeController {
 			mv.addObject("email", userResult.getEmail());
 			request.getSession().setAttribute("uname", userResult.getName());
 			Set<Authority> authority = userResult.getAuthority();
-			for(Authority auth:authority){
+			for (Authority auth : authority) {
 				System.out.println("Set Value ---> " + auth);
-				switch(auth) {
+				switch (auth) {
 				case MANAGER:
 					mv.addObject("userClickHomeManager", true);
 					return mv;
@@ -78,7 +80,7 @@ public class HomeController {
 				case ADMIN:
 					mv.addObject("userClickHomeAdmin", true);
 					return mv;
-				case SELLER:	
+				case SELLER:
 					mv.addObject("userClickHomeSeller", true);
 					return mv;
 				default:
@@ -105,33 +107,33 @@ public class HomeController {
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/forgot-password")
 	public String forgotPassword() {
 		return "forgot-password1";
 	}
-	
+
 	@RequestMapping(value = "/resetPasswordEmail")
 	public ModelAndView resetPasswordEmail(@RequestParam("email") String email) {
 		ModelAndView mv = new ModelAndView("forgot-password1");
 		mv.addObject("msg", userService.sendMail(email));
-		return mv;	
+		return mv;
 	}
-	
+
 	@RequestMapping(value = "/resetPassword")
 	public ModelAndView resetPassword(@RequestParam("email") String email) {
 		ModelAndView mv = new ModelAndView("ResetPassword");
 		mv.addObject("email", email);
-		return mv;	
+		return mv;
 	}
-	
+
 	@RequestMapping(value = "/resetPassword1")
 	public ModelAndView resetPassword1(@RequestParam("email") String email, @RequestParam("newPass") String password) {
 		ModelAndView mv = new ModelAndView("login1");
 		mv.addObject("message", userService.updatePassword(email, password));
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/viewEmployees")
 	public ModelAndView employee() {
 		ModelAndView mv = new ModelAndView("adminDash");
@@ -149,7 +151,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/addEmployee1")
-	public ModelAndView addEmployee1(@ModelAttribute("address") Address address, @ModelAttribute("user") Employee user) {
+	public ModelAndView addEmployee1(@ModelAttribute("address") Address address,
+			@ModelAttribute("user") Employee user) {
 		user.setAddress(address);
 		ModelAndView mv = new ModelAndView("adminDash");
 		mv.addObject("result", userService.createUser(user));
@@ -226,7 +229,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("adminDash");
 		Customer customer1 = customerService.updateCustomer(customer);
 		System.out.println(customer1.getAddress());
-		if (customer1!=null) {
+		if (customer1 != null) {
 			String message = "<h4><font color = 'red'>" + customer.getCustName() + " Updated Successfully.</font></h4>";
 			mv.addObject("message", message);
 			mv.addObject("customers", customer1);
@@ -263,6 +266,7 @@ public class HomeController {
 	 * return mv; } else return new ModelAndView("redirect:./shared/dashboard.jsp");
 	 * }
 	 */
+
 	@RequestMapping(value = "/viewStocks")
 	public ModelAndView viewStocks() {
 		ModelAndView mv = new ModelAndView("adminDash");
@@ -302,15 +306,24 @@ public class HomeController {
 		mv.addObject("userClickAddCategory", true);
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/deleteUser")
 	public @ResponseBody String deleteUser(@RequestParam("id") String id) {
 		System.out.println("DELETE USER INFORMATION ID ---> " + id);
 		boolean result = userService.deleteUser(id);
-		if(result)
-		return "OK";
+		if (result)
+			return "OK";
 		else
-		return "OK";   // Need to Apply else part
+			return "OK"; // Need to Apply else part
+	}
+
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public @ResponseBody String updateUser(@RequestBody Employee emp, HttpServletRequest request) {
+		Employee emp1 = userService.updateUser(emp);
+		if (emp1 != null)
+			return "OK";
+		else
+			return "OK";
 	}
 
 	@RequestMapping(value = "/addCategory1")

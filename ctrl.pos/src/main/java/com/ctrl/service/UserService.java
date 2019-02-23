@@ -131,5 +131,21 @@ public class UserService {
 			}catch(Exception e){
 				return false;
 			}
+	}
+
+	public Employee updateUser(Employee emp) {
+		try {
+			Employee employeeToUpdate = userRepository.getOne(emp.getId());
+			employeeToUpdate.setName(emp.getName());
+			employeeToUpdate.setEmail(emp.getEmail());
+			employeeToUpdate.setActive(emp.isActive());
+			//employeeToUpdate.setAuthority(emp.getAuthority());
+			employeeToUpdate.setAddress(emp.getAddress());
+			userRepository.save(employeeToUpdate);
+			return employeeToUpdate;
+		} catch (Exception e) {
+			System.out.println("Exception -----------------> " + e);
+			return null;
+		}
 	}	
 }

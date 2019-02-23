@@ -111,6 +111,8 @@
 			}); */
 			// Add row on add button click
 			$(document).on("click", ".add", function(){
+				var userId = $(this).parent().find('#userId').val();
+				var addressId = $(this).parent().find('#addressId').val();
 				var empty = false;
 				var input = $(this).parents("tr").find('input[type="text"]');
 			    input.each(function(){
@@ -125,14 +127,44 @@
 				var trialValues = [];
 				if(!empty){
 					input.each(function(){
-						trialValues.push(JSON.stringify($(this).val()));
-						$(this).parent("td").html($(this).val());
-					});			
-					
-					alert("JSON Converted Value --> " + JSON.stringify(trialValues));
-					
+						trialValues.push($(this).val());
+						/* $(this).parent("td").html($(this).val()); */
+					});
+			
+					var developerData = {};
+					var address = {};
+					//var authority = {};
+					developerData["id"] = userId;
+					developerData["name"] = trialValues[0];
+					developerData["email"] = trialValues[1];
+					developerData["active"] = trialValues[2];
+					address["addressid"] = addressId;
+					address["street"] = trialValues[3];
+					address["city"] = trialValues[4];
+					address["state"] = trialValues[5];
+					address["zipcode"] = trialValues[6];
+				  //  developerData["authority"] = trialValues[7];
+					developerData["address"] = address;
+					$.ajax({
+						      type: "POST",
+						      contentType : 'application/json; charset=utf-8',
+						      url: "/ctrlaihub/updateUser",
+						      data: JSON.stringify(developerData), // Note it is important
+						      success :function(result) {
+						       alert("Updated Successfully");
+						       if(!empty){
+									input.each(function(){
+							 			$(this).parent("td").html($(this).val());
+									});
+								}      
+						     },
+								error : function(result) {
+									console.log("ERROR1 : ", result);
+									alert("ERROR: ", result);
+								}
+						  });
 					$(this).parents("tr").find(".add, .edit").toggle();
-					$(".add-new").removeAttr("disabled");
+					$(".add-new").removeAttr("disabled"); 
 				}		
 			});
 			
@@ -238,7 +270,9 @@
 											<td>${user.address.zipcode}</td>
 											<td>${user.authority}</td>
 											<td>$320,800</td>
-											<td><input type="hidden" value="${user.id}">
+											<td>
+												<input type="hidden" id = "addressId" value="${user.address.addressid}">
+												<input type="hidden" id = "userId" value="${user.id}"> 
 												<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
 												<a class="edit" title="Edit" data-toggle="tooltip"><i
 													class="material-icons">&#xE254;</i></a> <a class="delete"
