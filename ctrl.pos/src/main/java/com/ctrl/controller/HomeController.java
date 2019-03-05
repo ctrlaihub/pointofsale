@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.ctrl.domains.Address;
 import com.ctrl.domains.Authority;
@@ -29,8 +30,9 @@ import com.ctrl.service.CustomerService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
+@SuppressWarnings("deprecation")
 @Controller
-public class HomeController {
+public class HomeController extends WebMvcConfigurerAdapter{
 
 	@Autowired
 	private UserService userService;
@@ -44,6 +46,13 @@ public class HomeController {
 	@Autowired
 	private CustomerService customerService;
 
+	/*
+	 * @Autowired HttpSession ses;
+	 */
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new GlobalControllerAdvice());
+	}
+
 	@RequestMapping(value = "/")
 	public String home(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String sid = session.getId();
@@ -56,9 +65,25 @@ public class HomeController {
 		return "login1";
 	}
 
+	/*
+	 * @RequestMapping(value ="/**") public ModelAndView error1(HttpServletRequest
+	 * request) {
+	 * 
+	 * System.out.
+	 * println(" <-------Hello I am here 1111111111111111111111111111 --- > "); if
+	 * (request.getSession().getAttribute("uname") == null ||
+	 * request.getSession(false).getAttribute("uname") == "") { return new
+	 * ModelAndView("redirect:/"); } ModelAndView mv = new ModelAndView("testing");
+	 * mv.addObject("userClickHome", true); return mv; // return "error404"; }
+	 */
+
 	@RequestMapping(value = "/login1")
 	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
 			HttpServletRequest request) {
+//		ses.setAttribute("name", userName);
+		// SessionUser.setName(userName);
+		// SessionUser.setPassword(password);
+		// setUpUserForm(SessionUser);
 		Employee userResult = userService.findUserByEmail(userName, password);
 		String message = null;
 		ModelAndView mv = new ModelAndView("login1");
@@ -66,7 +91,7 @@ public class HomeController {
 			mv = new ModelAndView("adminDash");
 			mv.addObject("name", userResult.getName());
 			mv.addObject("email", userResult.getEmail());
-			request.getSession().setAttribute("uname", userResult.getName());
+			request.getSession(true).setAttribute("uname", userResult.getName());
 			Set<Authority> authority = userResult.getAuthority();
 			for (Authority auth : authority) {
 				System.out.println("Set Value ---> " + auth);
@@ -319,6 +344,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public @ResponseBody String updateUser(@RequestBody Employee emp, HttpServletRequest request) {
+		System.out.println("Employee --------------> " + emp);
 		Employee emp1 = userService.updateUser(emp);
 		if (emp1 != null)
 			return "OK";

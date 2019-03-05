@@ -8,15 +8,15 @@
 
 <title>Insert title here</title>
 
-<!-- Added by Vasanthi for responsive Design --> 
+<!-- Added by Vasanthi for responsive Design -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Added by Vasanthi for responsive Design --> 
-	
+<!-- Added by Vasanthi for responsive Design -->
+
 <!-- Favicon -->
 <link rel="icon" href="dashAssets/favicon.ico" type="image/x-icon">
 
@@ -42,6 +42,37 @@
 <!-- height: 400px; background-size: 100% 150% -->
 <!-- class="login-page -->
 <!-- style="background-image:url(dashAssets/images/Grocery7.jpg); background-repeat: no-repeat; background-size: 100% 125%" -->
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var remember_me_is_checked;
+		$('#sign_in :checkbox').change(function() {
+			// this will contain a reference to the checkbox   
+			if (this.checked){
+				alert("Iam here11");
+				remember_me_is_checked = "true";
+			    document.location.href ="../shared/login1.jsp?rememberme=" + remember_me_is_checked; 
+			}
+			else{
+				alert("Iam here22");
+				remember_me_is_checked = "false";
+				document.location.href ="../shared/login1.jsp?rememberme=" + remember_me_is_checked;
+			}
+		});
+	});
+</script>
+<%
+String rem;
+try{ 
+	rem=(request.getParameter("rememberme")); 
+	System.out.println("Rem ------>" + rem);
+	/* out.print("start---------------------->"+rem);  */
+} 
+catch(Exception e) 
+{ 
+	e.printStackTrace(); 
+}
+%>
 </head>
 <body
 	style="background-image: url(dashAssets/images/Grocery7.jpg); background-repeat: no-repeat; background-size: cover;"
@@ -75,9 +106,9 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-6 p-t-5">
-							<input type="checkbox" id="rememberme"
+							<input type="checkbox" id="rememberme" value = "true"
 								class="filled-in chk-col-pink"> <label for="rememberme">Remember
-								Me</label>
+								Me11</label>
 						</div>
 						<!-- class="filled-in chk-col-pink" -->
 						<div class="col-xs-6 p-t-5">

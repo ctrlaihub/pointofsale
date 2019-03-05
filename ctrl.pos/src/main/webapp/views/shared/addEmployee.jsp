@@ -96,7 +96,7 @@
 										for="authority_checkbox_4">SELLER</label>
 								</div>
 							</div>
-							
+
 							<div class="form-group form-float">
 								<div class="form-line">
 									<input type="radio" class="with-gap" id="ig_radio"
@@ -106,7 +106,15 @@
 										for="ig_radio1">InActive</label>
 								</div>
 							</div>
-							
+
+							<div class="col-xs-4">
+								<div class="form-group">
+									<label class="control-label">Upload Photo</label> 
+									<input type="file" class="filestyle" data-icon="false">
+								</div>
+							</div>
+
+
 							<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							<!--  </div>
                              -->

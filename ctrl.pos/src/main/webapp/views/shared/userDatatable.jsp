@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- added by B.V -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style type="text/css">
    /*  body {
         color: #404E67;
@@ -143,7 +145,8 @@
 					address["city"] = trialValues[4];
 					address["state"] = trialValues[5];
 					address["zipcode"] = trialValues[6];
-				  //  developerData["authority"] = trialValues[7];
+					const value = trialValues[7];
+				    developerData["authority"] = [value];
 					developerData["address"] = address;
 					$.ajax({
 						      type: "POST",
@@ -171,9 +174,33 @@
 			// Edit row on edit button click
 			$(document).on("click", ".edit", function(){	
 				alert("I am in edit");
-			    $(this).parents("tr").find("td:not(:last-child)").each(function(){
-					$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-				});		
+
+		//	    $(this).parents("tr").find("td:not(:last-child)").each(function(){
+				    
+				   /*  if($(this).text()== "true" || $(this).text()== "false"){
+					    alert("I am active radio button3");
+					    var $greetingOptions = $('#act');
+					    $greetingOptions.empty();
+					    $greetingOptions.append($('<input type="radio" name="greetings" checked>' + "True" + '</input><br />'));
+					    //var $ctrl = $('<input/>').attr({ type: 'radio', name:'rad'}).addClass("rad");
+					    //$("#act").append($ctrl);
+					    
+					    //var radioBtn = $('<input type="radio" name="rbtnCount"/>');
+				    	//radioBtn.appendTo('#act');
+					    var radioBtn = $('<input type="radio" name="rbtnCount" value = "true" />');
+					    $("#act").append(radioBtn);
+					    //$("#act").append('<input type="radio" name = "status" value="' + $(this).text() + '">');
+				    	//$(this).innerHtml('<input type="radio" name = "status" value="' + $(this).text() + '">');
+					}
+				    else if($(this).text()== "[MANAGER]" || $(this).text()== "[CASHIER]" || $(this).text()== "[SELLER]" || $(this).text()== "[ADMIN]"){
+				    	 alert("I am AUTHORITY button2");
+				    	 $(this).innerHtml('<input type="radio" name = "status" value="' + $(this).text() + '">');
+					}
+				    else */
+				//	$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+					/* var radioBtn = $('<input type="radio" name="rbtnCount" value = "true" />');
+			    	radioBtn.appendTo('#act'); */
+		//		});		
 				$(this).parents("tr").find(".add, .edit").toggle();
 				$(".add-new").attr("disabled", "disabled");
 			});

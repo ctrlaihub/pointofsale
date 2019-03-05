@@ -139,7 +139,7 @@ public class UserService {
 			employeeToUpdate.setName(emp.getName());
 			employeeToUpdate.setEmail(emp.getEmail());
 			employeeToUpdate.setActive(emp.isActive());
-			//employeeToUpdate.setAuthority(emp.getAuthority());
+			employeeToUpdate.setAuthority(emp.getAuthority());
 			employeeToUpdate.setAddress(emp.getAddress());
 			userRepository.save(employeeToUpdate);
 			return employeeToUpdate;

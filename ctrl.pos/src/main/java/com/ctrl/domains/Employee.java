@@ -23,6 +23,7 @@ import org.hibernate.annotations.Parameter;
 
 @Entity
 public class Employee {
+	
 	@Id
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	//@Column(updatable = false, nullable = false)
@@ -33,28 +34,27 @@ public class Employee {
 			@Parameter(name = StringPrefixedSequenceIdGenerator2.INITIAL_VALUE, value = "EMP_1")
 			})
 	private String id;
+	
 	@Column(nullable = false)
 	private String name;
+	
 	@Column(unique = true, nullable = false)
 	private String email;
+	
 	@Column(nullable = false)
 	private String password;
+	
 	@Column(nullable = false)
 	private boolean active;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
+	
 	@ElementCollection(targetClass = Authority.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
 //    @Column(name = "authority")
 	private Set<Authority> authority;
-	
-	/*public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}*/
-	
+		
 	@Column(name="created_at", nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date createdAt;
