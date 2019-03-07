@@ -57,11 +57,6 @@ public class HomeController extends WebMvcConfigurerAdapter{
 	public String home(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String sid = session.getId();
 		System.out.println(" sid------------> " + sid);
-		// HttpSession sessionObj = request.getSession(true);
-		// sessionObj.setMaxInactiveInterval(7);
-		// int timeout = sessionObj.getMaxInactiveInterval();
-		// System.out.println(" TIMEOUT----------> " + timeout);
-		// response.setHeader("Refresh", timeout + "; URL=login1.jsp");
 		return "login1";
 	}
 
@@ -80,10 +75,6 @@ public class HomeController extends WebMvcConfigurerAdapter{
 	@RequestMapping(value = "/login1")
 	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
 			HttpServletRequest request) {
-//		ses.setAttribute("name", userName);
-		// SessionUser.setName(userName);
-		// SessionUser.setPassword(password);
-		// setUpUserForm(SessionUser);
 		Employee userResult = userService.findUserByEmail(userName, password);
 		String message = null;
 		ModelAndView mv = new ModelAndView("login1");
