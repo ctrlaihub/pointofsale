@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.ctrl.domains.Address;
 import com.ctrl.domains.Authority;
@@ -30,9 +31,10 @@ import com.ctrl.service.CustomerService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
-@SuppressWarnings("deprecation")
+/*extends WebMvcConfigurerAdapter*/
+//@SuppressWarnings("deprecation")
 @Controller
-public class HomeController extends WebMvcConfigurerAdapter{
+public class HomeController implements WebMvcConfigurer {
 
 	@Autowired
 	private UserService userService;
@@ -49,6 +51,7 @@ public class HomeController extends WebMvcConfigurerAdapter{
 	/*
 	 * @Autowired HttpSession ses;
 	 */
+
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new GlobalControllerAdvice());
 	}
@@ -62,11 +65,9 @@ public class HomeController extends WebMvcConfigurerAdapter{
 
 	/*
 	 * @RequestMapping(value ="/**") public ModelAndView error1(HttpServletRequest
-	 * request) {
-	 * 
-	 * System.out.
-	 * println(" <-------Hello I am here 1111111111111111111111111111 --- > "); if
-	 * (request.getSession().getAttribute("uname") == null ||
+	 * request) { System.out.
+	 * println(" <-------Hello I am here 1111111111111111111111111111 --- > ");
+	 * if(request.getSession().getAttribute("uname") == null ||
 	 * request.getSession(false).getAttribute("uname") == "") { return new
 	 * ModelAndView("redirect:/"); } ModelAndView mv = new ModelAndView("testing");
 	 * mv.addObject("userClickHome", true); return mv; // return "error404"; }
@@ -75,9 +76,9 @@ public class HomeController extends WebMvcConfigurerAdapter{
 	@RequestMapping(value = "/login1")
 	public ModelAndView login1(@RequestParam("username") String userName, @RequestParam("password") String password,
 			HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("login1");
 		Employee userResult = userService.findUserByEmail(userName, password);
 		String message = null;
-		ModelAndView mv = new ModelAndView("login1");
 		if (userResult != null) {
 			mv = new ModelAndView("adminDash");
 			mv.addObject("name", userResult.getName());
@@ -114,11 +115,6 @@ public class HomeController extends WebMvcConfigurerAdapter{
 
 	@RequestMapping(value = "/adminDash")
 	public ModelAndView adminDash(HttpServletRequest request) {
-		System.out.println("Get Attribute ----------->  " + request.getSession().getAttribute("uname"));
-		if (request.getSession().getAttribute("uname") == null
-				|| request.getSession(false).getAttribute("uname") == "") {
-			return new ModelAndView("redirect:/");
-		}
 		ModelAndView mv = new ModelAndView("testing");
 		mv.addObject("userClickHome", true);
 		return mv;
