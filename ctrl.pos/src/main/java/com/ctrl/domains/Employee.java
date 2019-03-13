@@ -47,6 +47,9 @@ public class Employee {
 	@Column(nullable = false)
 	private boolean active;
 	
+	@Column(nullable = true)
+	private String fileName;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
@@ -105,6 +108,12 @@ public class Employee {
 	}
 	public void setAuthority(Set<Authority> authority) {
 		this.authority = authority;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	@Override
 	public String toString() {

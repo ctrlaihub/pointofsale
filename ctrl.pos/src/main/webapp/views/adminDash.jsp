@@ -61,19 +61,8 @@
 
 <!-- Custom Css -->
 <link href="dashAssets/css/style.css" rel="stylesheet">
-
-<!-- added by B.V -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Signout tab is not working because of conflict. so its commented. 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
--->
-<!-- added by B.V -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 </head>
+
 <body class="theme-red">
 	<!-- Page Loader -->
 	<div class="page-loader-wrapper">
@@ -243,7 +232,7 @@
 	</c:if>
 
  --%>	<!-- Jquery Core Js -->
-	<script src="dashAssets/plugins/jquery/jquery.min.js"></script>
+  	<script src="dashAssets/plugins/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core Js -->
 	<script src="dashAssets/plugins/bootstrap/js/bootstrap.js"></script>

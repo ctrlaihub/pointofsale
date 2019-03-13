@@ -26,8 +26,7 @@
 						</ul>
 					</div>
 					<div class="body">
-						<form action="addEmployee1">
-
+						<form action="addEmployee1" method="POST" enctype="multipart/form-data">
 							<div class="form-group form-float">
 								<div class="form-line">
 
@@ -107,13 +106,12 @@
 								</div>
 							</div>
 
-							<div class="col-xs-4">
-								<div class="form-group">
-									<label class="control-label">Upload Photo</label> 
-									<input type="file" class="filestyle" data-icon="false">
+							<div class="form-group form-float">
+								<div class="form-line">
+									${message1} 
+									<label class="control-label">Upload Photo</label> <input type="file" name="file" class="filestyle" data-icon="false">
 								</div>
 							</div>
-
 
 							<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							<!--  </div>

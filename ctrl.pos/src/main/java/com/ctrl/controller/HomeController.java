@@ -1,5 +1,9 @@
 package com.ctrl.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-//import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.ctrl.domains.Address;
 import com.ctrl.domains.Authority;
@@ -31,8 +36,6 @@ import com.ctrl.service.CustomerService;
 import com.ctrl.service.ProductService;
 import com.ctrl.service.UserService;
 
-/*extends WebMvcConfigurerAdapter*/
-//@SuppressWarnings("deprecation")
 @Controller
 public class HomeController implements WebMvcConfigurer {
 
@@ -48,6 +51,8 @@ public class HomeController implements WebMvcConfigurer {
 	@Autowired
 	private CustomerService customerService;
 
+	@Value("${file.upload.path}")
+	private String fileUploadPath;
 	/*
 	 * @Autowired HttpSession ses;
 	 */
@@ -83,6 +88,7 @@ public class HomeController implements WebMvcConfigurer {
 			mv = new ModelAndView("adminDash");
 			mv.addObject("name", userResult.getName());
 			mv.addObject("email", userResult.getEmail());
+			mv.addObject("fileName", userResult.getFileName());
 			request.getSession(true).setAttribute("uname", userResult.getName());
 			Set<Authority> authority = userResult.getAuthority();
 			for (Authority auth : authority) {
@@ -162,13 +168,30 @@ public class HomeController implements WebMvcConfigurer {
 		return mv;
 	}
 
+	/*
+	 * RedirectAttributes redirectAttributes
+	 */
 	@RequestMapping(value = "/addEmployee1")
-	public ModelAndView addEmployee1(@ModelAttribute("address") Address address,
-			@ModelAttribute("user") Employee user) {
+	public ModelAndView addEmployee1(@ModelAttribute("address") Address address, @ModelAttribute("user") Employee user,
+			@RequestParam("file") MultipartFile file) {
+		String fileName = file.getOriginalFilename();
+		user.setFileName(fileName);
 		user.setAddress(address);
 		ModelAndView mv = new ModelAndView("adminDash");
-		mv.addObject("result", userService.createUser(user));
 		mv.addObject("userClickAddEmployee1", true);
+		System.out.println(" <--------------I am here 1-----------------> ");
+		if (file.isEmpty()) {
+			mv.addObject("message1", "Please select a file and try again");
+			return mv;
+		}
+		try {
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get(fileUploadPath + fileName);
+			Files.write(path, bytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mv.addObject("result", userService.createUser(user));
 		return mv;
 	}
 
