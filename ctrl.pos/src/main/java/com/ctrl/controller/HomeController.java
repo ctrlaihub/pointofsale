@@ -90,6 +90,7 @@ public class HomeController implements WebMvcConfigurer {
 			mv.addObject("email", userResult.getEmail());
 			mv.addObject("fileName", userResult.getFileName());
 			request.getSession(true).setAttribute("uname", userResult.getName());
+			request.getSession(true).setAttribute("email", userResult.getEmail());
 			Set<Authority> authority = userResult.getAuthority();
 			for (Authority auth : authority) {
 				System.out.println("Set Value ---> " + auth);
