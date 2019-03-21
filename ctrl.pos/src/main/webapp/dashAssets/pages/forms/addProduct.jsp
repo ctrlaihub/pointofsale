@@ -1,27 +1,3 @@
-<!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-<script>
-	$(document).ready(function() {
-		alert("I am here");
-		var date_input = $('input[name="date"]'); //our date input has the name "date"
-		//var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-		var options = {
-			format : 'mm/dd/yyyy',
-			// container: container,
-			todayHighlight : true,
-			autoclose : true,
-		};
-		date_input.datepicker(options);
-	})
-</script>
 <section class="content">
 	<div class="container-fluid">
 		<div class="block-header">
@@ -50,7 +26,7 @@
 						</ul>
 					</div>
 					<div class="body">
-						<form action="addProduct1">
+						<form action="addProduct1" id = "productValidation">
 							<div class="form-group form-float">
 								<div class="form-line">
 									<input type="text" class="form-control" name="productCode" />
@@ -97,7 +73,7 @@
 								</div>
 							</div>
 
-							<!-- <div class="row clearfix">
+							<div class="row clearfix">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="card">
 										<div class="header">
@@ -152,19 +128,12 @@
 									</div>
 								</div>
 							</div>
- -->
+
 							<div class="form-line">
 								<input type="radio" class="with-gap" id="ig_radio" name="active">
 								<label for="ig_radio">Active</label> <input type="radio"
 									class="with-gap" id="ig_radio1" name="active"> <label
 									for="ig_radio1">InActive</label>
-							</div>
-
-							<div class="form-group">
-								<!-- Date input -->
-								<label class="control-label" for="date">Date</label> <input
-									class="form-control" id="date" name="date"
-									placeholder="MM/DD/YYY" type="text" />
 							</div>
 
 							<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>

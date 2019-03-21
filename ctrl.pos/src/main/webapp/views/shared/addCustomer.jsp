@@ -1,3 +1,35 @@
+<script type="text/javascript">
+$(document).ready(function () {
+alert("I am here!");
+$('#customerValidation').validate({
+    rules: {
+    	custName: {
+            minlength: 2,
+            required: true
+        },
+        custMobileNo:{
+            minlength: 2,
+            required: true
+        },
+        street:{
+        	minlength: 2,
+            required: true
+        },
+        email: {
+            required: true,
+            email: true
+        }
+    },
+    highlight: function (element) {
+        $(element).closest('.form-line').removeClass('success').addClass('error');
+    },
+    success: function (element) {
+        element.text('OK!').addClass('valid')
+            .closest('.form-line').removeClass('error').addClass('success');
+    }
+});
+});
+</script>
 <section class="content">
 	<div class="container-fluid">
 		<div class="block-header">
@@ -27,7 +59,7 @@
 						</ul>
 					</div>
 					<div class="body">
-						<form action="addCustomer1">
+						<form action="addCustomer1" id="customerValidation">
 							<div class="form-group form-float">
 								<div class="form-line">
 									<input type="text" class="form-control" name="custName" /> <label
@@ -88,7 +120,7 @@
 									for="custType_checkbox_2">Loyalty Customer</label> 
 							</div>
 
-							<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+							<button class="btn btn-primary waves-effect" class="btn btn-success" type="submit">SUBMIT</button>
 
 						</form>
 					</div>

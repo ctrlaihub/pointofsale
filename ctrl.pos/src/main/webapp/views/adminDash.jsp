@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -61,6 +61,8 @@
 
 <!-- Custom Css -->
 <link href="dashAssets/css/style.css" rel="stylesheet">
+
+
 </head>
 
 <body class="theme-red">
@@ -164,7 +166,8 @@
 	</c:if>
 
 	<c:if test="${userClickAddProduct==true }">
-		<%@include file="./shared/addProduct.jsp"%>
+		<%-- <%@include file="./pages/forms/addProduct.jsp"%> --%>
+		 <%@include file="./shared/addProduct.jsp"%> 
 	</c:if>
 
 	<c:if test="${userClickAddCategory==true }">
@@ -303,9 +306,9 @@
 	<script src="dashAssets/plugins/momentjs/moment.js"></script>
 
 	<!-- Bootstrap Material Datetime Picker Plugin Js -->
-	<script
+	<!-- <script
 		src="dashAssets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
+ -->
 	<!-- Demo Js -->
 	<script src="dashAssets/js/demo.js"></script>
 </body>

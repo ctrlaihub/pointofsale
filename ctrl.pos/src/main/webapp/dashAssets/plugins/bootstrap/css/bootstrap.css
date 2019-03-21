@@ -3007,9 +3007,11 @@ select[multiple].input-lg {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 20px;
+/*font-size: 20px;
   font-weight: bold;
-  line-height: 1.42857143;
+  line-height: 1.42857143;  */
+  font-size: 15px;
+ line-height: 1;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -3061,7 +3063,8 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 .btn-default {
-  color: #333;
+  /* color: #333; */
+  color: #aaa;
   background-color: #fff;
   border-color: #ccc;
 }
