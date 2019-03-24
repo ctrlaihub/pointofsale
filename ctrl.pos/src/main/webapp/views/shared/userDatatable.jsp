@@ -2,14 +2,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-<script type="text/javascript" src="/js/sprinkle.js"></script>
-
 <style type="text/css">
    /*  body {
         color: #404E67;
@@ -150,7 +144,6 @@
 					address["state"] = trialValues[5];
 					address["zipcode"] = trialValues[6];
 					const value = trialValues[7];
-					
 				    developerData["authority"] = [value];
 					developerData["address"] = address;
 					$.ajax({
@@ -177,48 +170,11 @@
 			});
 			
 			// Edit row on edit button click
-			$(document).on("click", ".edit", function(){
-
-				alert("I am in edit");
+			$(document).on("click", ".edit", function(){	
 				
-				/* servicetypeRadios = '<div class="input-group">' +
-				'<span class="input-group-addon"><input type="radio" name="active" value="True" required/></span>'+
-				'</div><br/>';
-				 */				
-				// servicetypeRadios = '<input type="radio" name="active" value="True" required/>True';
-					 	
+				alert("I am in edit");
 			    $(this).parents("tr").find("td:not(:last-child)").each(function(){
-				   // $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-				    if($(this).text()=="true" || $(this).text()=="false"){
-					    	alert("I am active radio button");
-
-					    	webix.ui({
-					    		  view:"datatable",
-					    		  columns:[
-					    		    /* { id:"ch1", header:"", checkValue:'on', uncheckValue:'off', 
-					    		        template:"{common.checkbox()}"}, */
-					    		    { id:"act", header:"", checkValue:'on', uncheckValue:'off', 
-					    		        template:"{common.radio()}"},
-					    		    // other columns
-					    		  ],  
-					    		  data: grid_data,
-					    		  on:{
-					    		    onCheck:function(rowId, colId, state){
-						    		    alert(state);
-					    		      console.log(state)
-					    		    }
-					    		  }
-					    		});
-				    		
-					//    	 $('#act').html(servicetypeRadios);
-
-					    	 
-				    		//$greetingOptions.empty();
-				    		//$greetingOptions.append($('<input type="radio" name="greetings" checked>' + 'True' + '</input><br/>'));
-				    	}
-					    else 
-						$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-				    
+				    $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
 				   /*  if($(this).text()=="true" || $(this).text()=="false"){
 					    alert("I am active radio button3");
 					    var $greetingOptions = $('#act');
@@ -332,7 +288,7 @@
 										<tr>
 											<td>${user.name}</td>
 											<td>${user.email}</td>
-											<td><div id = "act">${user.active}</div></td>
+											<td>${user.active}</td>
 											<td>${user.address.street}</td>
 											<td>${user.address.city}</td>
 											<td>${user.address.state}</td>

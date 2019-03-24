@@ -65,7 +65,14 @@ public class HomeController implements WebMvcConfigurer {
 	public String home(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String sid = session.getId();
 		System.out.println(" sid------------> " + sid);
+	//	System.out.println(" The previous timeout was ----> " + session.getMaxInactiveInterval());
 		return "login1";
+	}
+	
+	@RequestMapping(value = "/timeout")
+	public String timeout() {
+		System.out.println("I am timeout.jsp");
+		return "timeout";
 	}
 
 	/*
@@ -91,6 +98,7 @@ public class HomeController implements WebMvcConfigurer {
 			mv.addObject("fileName", userResult.getFileName());
 			request.getSession(true).setAttribute("uname", userResult.getName());
 			request.getSession(true).setAttribute("email", userResult.getEmail());
+			request.getSession(true).setAttribute("imageName", userResult.getFileName());
 			Set<Authority> authority = userResult.getAuthority();
 			for (Authority auth : authority) {
 				System.out.println("Set Value ---> " + auth);

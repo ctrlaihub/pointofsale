@@ -21,11 +21,11 @@ $('#customerValidation').validate({
         }
     },
     highlight: function (element) {
-        $(element).closest('.form-line').removeClass('success').addClass('error');
+        $(element).closest('.body').removeClass('success').addClass('error');
     },
     success: function (element) {
         element.text('OK!').addClass('valid')
-            .closest('.form-line').removeClass('error').addClass('success');
+            .closest('.body').removeClass('error').addClass('success');
     }
 });
 });
