@@ -2,10 +2,7 @@ package com.ctrl.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
-
-import com.ctrl.domains.stock.Category;
 
 @Repository
 public class CategoryDao {
@@ -13,10 +10,10 @@ public class CategoryDao {
 	@PersistenceContext	
 	private EntityManager entityManager;
 	
-	public void updateCategory(Category category){
+	/*public void updateCategory(Category category){
 		
 	Category oldData=(Category)entityManager.find(Category.class, category.getId());
 		oldData.setActive(false);
 //		entityManager.merge(oldData);
-	}
+	}*/
 }

@@ -8,9 +8,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Address {
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false)
 	private long addressid;
 	@Column(nullable = false)
@@ -59,14 +58,10 @@ public class Address {
 	}
 	public void setZipcode(long zipcode) {
 		this.zipcode = zipcode;
-	}
-	
+	}	
 	@Override
 	public String toString() {
 		return "Address [addressid=" + addressid + ", street=" + street + ", city=" + city + ", state=" + state
 				+ ", zipcode=" + zipcode + "]";
-	}
-	
-	
-	
+	}	
 }

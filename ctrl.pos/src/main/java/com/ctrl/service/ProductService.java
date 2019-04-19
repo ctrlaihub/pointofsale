@@ -11,6 +11,7 @@ import com.ctrl.domains.stock.Product;
 import com.ctrl.repository.ProductRepository;
 
 @Service
+@Transactional
 public class ProductService {
 
 	@Autowired
@@ -29,10 +30,12 @@ public class ProductService {
 	}
 	
 	public List<Product> listAllProducts(){
+		System.out.println("Within List all products ---> " + productRepository.findAll());
 		return productRepository.findAll();
 	}
 	
 	public List<Product> listAllActiveProducts(){
+		System.out.println("Within List all Active products ---> " + productRepository.findByActive(true));
 		return productRepository.findByActive(true);
 	}
 	
@@ -41,13 +44,13 @@ public class ProductService {
 //		return productDao.findProductsByCategory(Long id);
 //	}
 	
-	@Transactional
-	public boolean deleteProduczsst(Product product){
+	
+	/*public boolean deleteProduczsst(Product product){
 		try{
 			productDao.deleteProduct(product);
 			return true;
 		}catch(Exception e){
 			return false;
 		}
-	}
+	}*/
 }

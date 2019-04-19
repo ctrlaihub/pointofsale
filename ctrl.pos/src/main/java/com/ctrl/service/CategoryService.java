@@ -1,6 +1,5 @@
 package com.ctrl.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,17 +21,18 @@ public class CategoryService {
 	@Autowired
 	private CategoryDao categoryDao;
 	
-	
 	/*
 	 * For creating new Category
 	 *
 	 * */
+	@Transactional
 	public boolean addCategory(Category category){
 		try{
 		categoryRepository.save(category);
 		return true;
 		}
 		catch(Exception e){
+			System.out.println("Exception -----------------> " + e);
 			return false;
 		}
 	}
@@ -42,6 +42,7 @@ public class CategoryService {
 	 * 
 	 * */
 	public List<Category> listAllCategory(){
+		System.out.println("List All Category ---> " + categoryRepository.findAll());
 		return categoryRepository.findAll();
 	}
 	
@@ -57,7 +58,7 @@ public class CategoryService {
 	 * To get category by id
 	 * 
 	 * */
-	public Optional<Category> getById(long id){
+	public Optional<Category> getById(String id){
 		return categoryRepository.findById(id);
 	}
 	
@@ -75,17 +76,17 @@ public class CategoryService {
 			return false;
 		}
 	 * */
-	public boolean deleteCategory(Category category){
+	/*public boolean deleteCategory(Category category){
 		try{
 			categoryDao.updateCategory(category);
 			return true;
 		}catch(Exception e){
 			return false;
 		}
-	}
+	}*/
 	
 	
-	public boolean updateCategory(Category category){
+	/*public boolean updateCategory(Category category){
 		return true;
-	}
+	}*/
 }

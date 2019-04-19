@@ -16,11 +16,11 @@ public class ProductDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public void deleteProduct(Product product){
+	/*public void deleteProduct(Product product){
 	Product p=(Product)entityManager.find(Product.class, product.getId());
 	p.setActive(false);
 	}
-
+*/
 //	public List<Product> findProductsByCategory(long id){
 //	List<Product> list=(List<Product>)entityManager.createQuery("select t FROM Product t where t.category = :value1 ")
 //		.setParameter("value1", id).getResultList();

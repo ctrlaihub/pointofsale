@@ -7,6 +7,7 @@
                             <span>Home</span>
                         </a>
                     </li>
+                     
 <!--                     <li> -->
 <!--                         <a href="dashAssets/pages/typography.html"> -->
 <!--                             <i class="material-icons">text_fields</i> -->
@@ -47,10 +48,10 @@
                                 </a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-1.html">View Customers</a>
+                                        <a href="${contextRoot}/viewCustomer">View Customers</a>
                                     </li>
                                     <li>
-                                        <a href="dashAssets/pages/widgets/infobox/infobox-2.html">Add Customer</a>
+                                        <a href="${contextRoot}/addCustomer">Add Customer</a>
                                     </li>
 <!--                                     <li> -->
 <!--                                         <a href="dashAssets/pages/widgets/infobox/infobox-3.html">Infobox-3</a> -->
@@ -78,10 +79,13 @@
                                 <a href="${contextRoot}/viewProducts">View Products</a>
                             </li>
                             <li>
-                                <a href="dashAssets/pages/ui/animations.html">Add Product</a>
+                                <a href="${contextRoot}/addProduct">Add Product</a>
                             </li>
+                            <!-- <li>
+                                <a href="dashAssets/pages/ui/animations.html">Add Product</a>
+                            </li> -->
                             <li>
-                                <a href="dashAssets/pages/ui/badges.html">Add Category</a>
+                                <a href="${contextRoot}/addCategory">Add Category</a>
                             </li>
 
                             

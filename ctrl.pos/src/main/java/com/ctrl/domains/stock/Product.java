@@ -9,14 +9,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.ctrl.domains.StringPrefixedSequenceIdGenerator2;
 
 @Entity
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)
-	private long id;
+	/*@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(updatable = false, nullable = false)*/
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_seq")
+	@GenericGenerator(name = "prod_seq", strategy = "com.ctrl.domains.StringPrefixedSequenceIdGenerator2", parameters = {
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.VALUE_PREFIX_PARAMETER, value = "PROD_"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INCREMENT_PARAMETER, value = "1"),
+			@Parameter(name = StringPrefixedSequenceIdGenerator2.INITIAL_VALUE, value = "PROD_1")
+			})
+	private String id;
 	@Column(nullable = false)
 	private String productCode;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -29,15 +43,24 @@ public class Product {
 	private double sellingprice;
 	@Column(nullable = false)
 	private int quantity;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Date expiryDate;
 	@Column(nullable = false)
 	private boolean active;
 	
-	public long getId() {
+	@Column(name="created_at", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date createdAt;
+
+	@PrePersist
+	protected void onCreate() {
+	    createdAt = new Date();
+	}
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getProductCode() {
@@ -76,7 +99,6 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 	public Date getExpiryDate() {
 		return expiryDate;
 	}
@@ -95,6 +117,4 @@ public class Product {
 				+ ", price=" + price + ", sellingprice=" + sellingprice + ", quantity=" + quantity + ", expiryDate="
 				+ expiryDate + ", active=" + active + "]";
 	}
-	
-	
 }
